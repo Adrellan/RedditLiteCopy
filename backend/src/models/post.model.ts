@@ -1,4 +1,6 @@
 import {Schema,Model} from "mongoose"
+import {baseEntityModel} from "./baseEntity.model";
+
 
 
 const PostScheme = new Schema({
@@ -7,6 +9,10 @@ const PostScheme = new Schema({
 		type: Schema.Types.ObjectId, ref: "User"
 	}],
 	content: String,
+	//TODO: Extend the model accordingly
+
+	// Base entity
+	...baseEntityModel
 })
 
 
