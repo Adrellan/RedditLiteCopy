@@ -6,3 +6,4 @@ export const CorsConfig : cors.CorsOptions  = {
 	methods: "*",
 	origin: process.env.CLIENT_ORIGIN
 }
+
