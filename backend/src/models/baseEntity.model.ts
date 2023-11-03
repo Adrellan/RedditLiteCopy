@@ -1,0 +1,16 @@
+import {Schema} from "mongoose"
+
+
+
+export const baseEntityModel = {
+	// Used for logical removed
+	active: Boolean,
+
+	// Document creation date of the entity
+	created: Date,
+	// Document creator userName
+	creator: String,
+
+	//Document modification date of the entity
+	updated: Date
+}
