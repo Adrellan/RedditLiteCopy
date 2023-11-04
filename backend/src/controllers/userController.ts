@@ -11,7 +11,7 @@ router.post("/login", (req, res)=>{
 
 
 router.post("/register", (req,res)=>{
-	//TODO: ND -> Implement a register method
+	//TODO: ND -> Implement a register method -> use crypto lib to hash the password!!
 })
 
 router.get("/user/:id", (req,res)=>{
