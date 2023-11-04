@@ -2,7 +2,6 @@ import {Router} from "express"
 import {IPost, Post} from "../models/post.model";
 import {setNewRecordInfo} from "../helpers/record.helper";
 import {badRequest, Ok} from "../helpers/response.helper";
-
 const router = Router();
 
 
@@ -33,8 +32,6 @@ router.get("/:postId", async (req, res) => {
 
 router.post("", async (req, res) => {
 	//TODO: Implement to create a new post and set the author as the current user principle!
-
-
 	try {
 		const post = req.body as IPost;
 
@@ -60,7 +57,7 @@ router.put("/:postId", async (req, res) => {
 
 		const updatedPost = await Post.findOneAndUpdate(
 			{_id: postId},
-			{...modifiedPost},
+			{...modifiedPost, updated: new Date()},
 			{returnDocument: "after"}
 		);
 
