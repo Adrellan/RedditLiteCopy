@@ -15,12 +15,9 @@ const port = process.env.PORT;
 logger.init()
 
 // --- Init Database --- //
-db.init().then(()=>{
-	console.log("✅ Database initialized successfully!")
-}).catch(e=>{
+db.init().catch(e=>{
 	console.error(`Unable to connect to the database: ${e}`)
 });
-
 
 // --- Middlewares --- //
 
