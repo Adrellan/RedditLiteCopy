@@ -19,7 +19,6 @@ db.init().catch(e=>{
 	console.error(`Unable to connect to the database: ${e}`)
 });
 
-
 // --- Middlewares --- //
 
 /// Parsing body to JSON
