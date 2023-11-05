@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "c36b0039-4dbf-421a-b3aa-d3f1ea74bc58",
+		"name": "SzoftModtan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24461436"
+	},
+	"item": [
+		{
+			"name": "Insert new post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Teszt Cím\",\r\n    \"content\":\"lorem ipsum donor sie tudja a tokom hogy vanb tovabb\",\r\n    \"name\":\"asdasd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3560/api/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3560",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get active posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3560/api/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3560",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get post by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3560/api/post/6543fba7b202655c20dd5730",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3560",
+					"path": [
+						"api",
+						"post",
+						"6543fba7b202655c20dd5730"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update post by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3560/api/post/6543fba7b202655c20dd5730",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3560",
+					"path": [
+						"api",
+						"post",
+						"6543fba7b202655c20dd5730"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3560/api/post/6543fba7b202655c20dd5730",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3560",
+					"path": [
+						"api",
+						"post",
+						"6543fba7b202655c20dd5730"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
