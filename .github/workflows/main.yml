@@ -8,19 +8,10 @@ on:
       - closed
 
 jobs:
-  build:
+  build-backend:
     runs-on: ubuntu-latest
-
+    if: contains(github.event.pull_request.labels.*.name, 'backend')
     steps:
-      - name: Check PR Label
-        id: pr_label_check
-        run: |
-          if [[ ${{ github.event.pull_request.labels }} =~ .*backend.* ]]; then
-            echo "PR is labeled as 'backend'"
-          else
-            echo "PR is not labeled as 'backend'. Exiting..."
-            exit 1
-          fi
       - name: Checkout Code
         uses: actions/checkout@v2
 
@@ -31,8 +22,8 @@ jobs:
 
           
 
-  deploy:
-    needs: build
+  deploy-backend:
+    needs: build-backend
     runs-on: ubuntu-latest
     if: ${{ needs.build.result == 'success' }}
 
@@ -66,7 +57,7 @@ jobs:
           
 
   health_check:
-    needs: deploy
+    needs: deploy-backend
     runs-on: ubuntu-latest
     if: ${{ needs.deploy.result == 'success' }}
 
