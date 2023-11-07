@@ -1,5 +1,0 @@
-build:
-  docker: 
-    api: backend/Dockerfile.api
-release:
-  image: "rlc/backend"
