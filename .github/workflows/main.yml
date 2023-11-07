@@ -8,7 +8,7 @@ on:
       - closed
 
 jobs:
-  build-backend:
+  test-backend:
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'backend')
     steps:
@@ -23,20 +23,18 @@ jobs:
           
 
   deploy-backend:
-    needs: build-backend
     runs-on: ubuntu-latest
-    if: ${{ needs.build.result == 'success' }}
-
+    if: contains(github.event.pull_request.labels.*.name, 'backend')
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Login to Heroku container registry!
         uses: docker/login-action@v1
+        #API_KEY MUST COME FROM GITHUB_SECRETS
         with:
           username: molnarok2313@gmail.com
           password: eaf0cffa-e252-4578-993b-c4e57ea4c8a0 
-      #API_KEY MUST COME FROM GITHUB_SECRETS
       - name: "Build and Deploy to Heroku Registry"
         run: |
           echo "Installing heroku..."
