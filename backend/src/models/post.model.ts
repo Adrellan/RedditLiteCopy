@@ -26,7 +26,7 @@ export const postScheme = new Schema<IPost, PostModel>({
 	...baseEntityModel
 })
 postScheme.statics.findActives = function(){
-	return 		this.find({active:true});
+	return this.find({active:true});
 }
 
 
