@@ -13,8 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatSidenavModule } from '@angular/material/sidenav';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -31,7 +30,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSidenavModule
+    MatSnackBarModule
   ],
   exports: [
     MatButtonModule,
@@ -47,7 +46,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSidenavModule
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {}
