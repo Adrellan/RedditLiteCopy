@@ -4,7 +4,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule,
          MatNativeDateModule
@@ -47,7 +47,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+<<<<<<< HEAD
     MatSidenavModule
   ]
+=======
+    MatSnackBarModule
+  ],
+  providers: [
+    { 
+    provide: MatDialogRef,
+    useValue: []
+     }, 
+    { 
+    provide: MAT_DIALOG_DATA, 
+    useValue: [] 
+    }
+    ]
+>>>>>>> 81f686e (sallang)
 })
 export class MaterialModule {}
