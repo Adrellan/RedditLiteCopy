@@ -7,6 +7,7 @@ import {performanceMiddleware} from "./middlewares/performace.mw";
 import apiRouter from "./api.router";
 import compression from "compression"
 import {logger} from "./config/logger.config";
+const settings = require('../package.json');
 
 dotenv.config();
 
@@ -15,12 +16,9 @@ const port = process.env.PORT;
 logger.init()
 
 // --- Init Database --- //
-db.init().then(()=>{
-	console.log("✅ Database initialized successfully!")
-}).catch(e=>{
+db.init().catch(e=>{
 	console.error(`Unable to connect to the database: ${e}`)
 });
-
 
 // --- Middlewares --- //
 
@@ -42,6 +40,7 @@ app.use(compression());
 
 // Main router for /api prefix!
 app.use("/api", apiRouter)
+app.use("/", (req,res)=>res.send(settings.version))
 
 app.listen(port, () => {
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);

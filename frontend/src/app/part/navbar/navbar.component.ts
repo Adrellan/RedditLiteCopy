@@ -9,18 +9,4 @@ import { LoginComponent } from 'src/app/page/login/login.component';
 })
 export class NavbarComponent {
 
-  //TODO
-  //Valamiért nem középen van a login gomb
-
-  constructor(
-    public dialog: MatDialog,
-  ) {
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      disableClose: true,
-      //data: { }
-    });
-  }
 }
