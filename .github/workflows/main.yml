@@ -34,16 +34,14 @@ jobs:
         uses: docker/login-action@v1
         #API_KEY MUST COME FROM GITHUB_SECRETS
         with:
-          registry: registry.heroku.com/rlc-backend/web
-          username: molnarok2313@gmail.com
-          password: eaf0cffa-e252-4578-993b-c4e57ea4c8a0 
+          registry: ${{secrets.HEROKU_REGISTRY_BACKEND}}
+          username: ${{secrets.HEROKU_REGISTRY_EMAIL}}
+          password: ${{secrets.HEROKU_API_KEY}}
       - name: "Build and Deploy to Heroku Registry"
         run: |
           echo "Installing heroku..."
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-          ls -la
           cd backend
-          ls -la
           echo "Performing to build API docker..."
           docker build -t registry.heroku.com/rlc-backend/web .
           echo "Build completed!"
