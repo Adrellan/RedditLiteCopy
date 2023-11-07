@@ -1,0 +1,82 @@
+name: RLC CI/CD Pipeline (Tests, Builds, Deploys)
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR Label
+        id: pr_label_check
+        run: |
+          if [[ ${{ github.event.pull_request.labels }} =~ .*backend.* ]]; then
+            echo "PR is labeled as 'backend'"
+          else
+            echo "PR is not labeled as 'backend'. Exiting..."
+            exit 1
+          fi
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Run Unit Tests
+        run: |
+          # Run your unit tests here
+          echo "Run unit tests of backend"
+
+          
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ needs.build.result == 'success' }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Build and Deploy
+        uses: docker/login-action@v1
+        with:
+          username: molnarok2313@gmail.com
+          password: eaf0cffa-e252-4578-993b-c4e57ea4c8a0 
+      #API_KEY MUST COME FROM GITHUB_SECRETS
+        run: |
+          echo "Installing heroku..."
+          curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+        
+          echo "Performing to build API docker..."
+          docker build -t registry.heroku.com/rlc-backend/web -f backend/Dockerfile .
+          echo "Build completed!"
+
+          echo "Pushing the image into Heroku..."
+          docker push registry.heroku.com/rlc-backend/web
+          echo "Pushing completed!"
+
+          echo "Releasing the container..."
+          heroku container:release web -a rlc-backend
+          echo "Release completed!"
+
+          
+
+  health_check:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: ${{ needs.deploy.result == 'success' }}
+
+    steps:
+      - name: Health Check
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://rlc-backend-745ce66c9e0c.herokuapp.com/)
+
+          if [ "$response" == "200" ]; then
+            echo "Health check passed. Status code: 200"
+          else
+            echo "Health check failed. Status code: $response"
+            exit 1
+          fi
