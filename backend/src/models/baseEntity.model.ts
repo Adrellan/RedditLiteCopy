@@ -1,6 +1,18 @@
-import {Schema} from "mongoose"
 
 
+
+export interface IBaseEntity {
+	// Used for logical removed
+	active: boolean,
+
+	// Document creation date of the entity
+	created: Date,
+	// Document creator userName
+	creator: string
+
+	//Document modification date of the entity
+	updated: Date
+}
 
 export const baseEntityModel = {
 	// Used for logical removed
