@@ -7,13 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule,
-         MatNativeDateModule  
+         MatNativeDateModule
         } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -46,7 +47,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSidenavModule
   ]
 })
 export class MaterialModule {}

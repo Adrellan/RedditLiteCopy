@@ -39,7 +39,6 @@ app.use(compression());
 
 // Main router for /api prefix!
 app.use("/api", apiRouter)
-app.get("/", (req,res)=>res.send("SZIA"))
 
 app.listen(port, () => {
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
