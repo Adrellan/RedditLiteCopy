@@ -61,8 +61,6 @@ jobs:
   health_check:
     needs: deploy-backend
     runs-on: ubuntu-latest
-    if: ${{ needs.deploy.result == 'success' }}
-
     steps:
       - name: Health Check
         run: |
