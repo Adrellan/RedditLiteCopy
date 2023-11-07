@@ -3,7 +3,7 @@ name: RLC CI/CD Pipeline (Tests, Builds, Deploys)
 on:
   pull_request:
     branches:
-      - master
+      - staging
     types:
       - closed
 
