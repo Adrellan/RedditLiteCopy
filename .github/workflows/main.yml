@@ -43,8 +43,9 @@ jobs:
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
           ls -la
           cd backend
+          ls -la
           echo "Performing to build API docker..."
-          docker build -t registry.heroku.com/rlc-backend/web -f Dockerfile .
+          docker build -t registry.heroku.com/rlc-backend/web .
           echo "Build completed!"
 
           echo "Pushing the image into Heroku..."
