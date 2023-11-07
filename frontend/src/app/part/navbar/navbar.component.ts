@@ -20,7 +20,7 @@ export class NavbarComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
       disableClose: true,
-      data: {}
+      //data: { }
     });
   }
 }
