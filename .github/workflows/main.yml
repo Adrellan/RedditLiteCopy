@@ -41,9 +41,10 @@ jobs:
         run: |
           echo "Installing heroku..."
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-        
+          ls -la
+          cd backend
           echo "Performing to build API docker..."
-          docker build -t registry.heroku.com/rlc-backend/web -f backend/Dockerfile ./backend
+          docker build -t registry.heroku.com/rlc-backend/web -f Dockerfile .
           echo "Build completed!"
 
           echo "Pushing the image into Heroku..."
