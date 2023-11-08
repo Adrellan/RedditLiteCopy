@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -21,6 +23,8 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import {DividerModule} from "primeng/divider";
 
+import { ButtonModule } from 'primeng/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,9 @@ import {DividerModule} from "primeng/divider";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+<<<<<<< HEAD
     PanelModule,
     InputTextModule,
     MaterialModule,
@@ -44,6 +50,10 @@ import {DividerModule} from "primeng/divider";
     InputTextareaModule,
     DividerModule,
     //RouterModule.forRoot(appRouting),
+=======
+    FormsModule,
+    ButtonModule
+>>>>>>> a30f890 (add prime faces)
   ],
   providers: [],
   bootstrap: [AppComponent]
