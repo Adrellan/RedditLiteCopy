@@ -41,5 +41,6 @@ app.use(compression());
 app.use("/api", apiRouter)
 
 app.listen(port, () => {
+	console.log('Környezeti változók:', process.env);
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
 });

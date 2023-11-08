@@ -1,55 +1,85 @@
-import {Router} from "express"
+import { Router } from "express";
+//import { IComment, Comment } from "../models/comment.model";
+import { setNewRecordInfo } from "../helpers/record.helper";
+import { badRequest, Ok } from "../helpers/response.helper";
 
-const Comment = require('./models/comment.model');
+const router = Router();
 
-const express = require('express');
-const router = express.Router();
+router.get("", async (req, res) => {
+  // TODO: Implementáld, hogy minden AKTÍV kommentet lekérj a MongoDB-ből
+  try {
+    console.log("uhu");
+  //  const comments = await Comment.findActives();
+    //Ok(res, comments);
+  } catch (e) {
+    badRequest(res, e);
+  }
+});
 
+router.get("/:commentId", async (req, res) => {
+  // TODO: Kérj le egy részletes verziót a kommentről az azonosítója alapján
+  const { commentId } = req.params;
 
+  try {
+    //const comment = await Comment.findById(commentId);
 
-router.get("", (req: any, res: any)=>{
-	//TODO: Implement to get all the ACTIVE comment from the MongoDB
-	res.status(200).send("Comments")
-})
+   // Ok(res, comment);
+  } catch (e) {
+    badRequest(res, e);
+  }
+});
 
-router.get("/:postid", (req: any, res: any)=>{
-	const postId = req.params.postid; // A poszt azonosítója a kérés URL-jéből
+router.post("", async (req, res) => {
+  // TODO: Implementáld egy új komment létrehozását, és állítsd be az írót az aktuális felhasználó elvének!
+  try {
+    /*const comment = req.body as IComment;
 
-    Comment.find({ post: postId }, (err: any, comments: any) => {
-        if (err) {
-        return res.status(500).json({ message: "Hiba a kommentek lekérése közben." });
-        }
+    // Állítsd be a rekord metaadatait
+    setNewRecordInfo(comment);
 
-        // Sikeres lekérdezés esetén visszaküldjük a poszthoz tartozó kommenteket
-        res.status(200).json(comments);
-    });
-})
+    const newComment = new Comment({ ...comment });
+    await newComment.save();
 
-router.post("/", (req: any, res: any)=>{
-	if (!req.user) {
-        return res.status(401).json({ message: "Nincs bejelentkezve felhasználó." });
-      }
-    
-      const userId = req.user.id;
-    
-      const newComment = {
-        text: req.body.text, // Vagy más adat, amit a kliens küld
-        author: userId, // Beállítjuk az aktuális felhasználó azonosítóját
-      };
-    
-      // TODO: A newComment mentése a MongoDB adatbázisba vagy a megfelelő tárolóba
-    
-      // Válasz küldése
-      res.status(201).json(newComment);
-})
+    Ok(res, newComment);*/
+  } catch (e) {
+    badRequest(res, e);
+  }
+});
 
-router.put("/:commentId", (req: any, res: any)=>{
-	//TODO: Implement a modification for the according comment
-})
+router.put("/:commentId", async (req, res) => {
+  // TODO: Implementáld a megfelelő komment módosítását
+  try {
+   /* const { commentId } = req.params;
+    const modifiedComment = req.body as IComment;
 
-router.delete("/:commentId", (req: any, res: any)=>{
-	//TODO: Implement a logical DELETE for the comment.
-})
+    const updatedComment = await Comment.findOneAndUpdate(
+      { _id: commentId },
+      { ...modifiedComment, updated: new Date() },
+      { returnDocument: "after" }
+    );
 
+    Ok(res, updatedComment);*/
+  } catch (e) {
+    badRequest(res, e);
+  }
+});
 
-module.exports = router;
+router.delete("/:commentId", async (req, res) => {
+  try {
+   /* const { commentId } = req.params;
+
+    const comment = await Comment.findById(commentId);
+    if (comment == null) {
+      badRequest(res, new Error(`Nem található komment azonosítóval: ${commentId}`));
+      return;
+    }
+
+    comment.active = false;
+    await comment.save();
+    Ok(res, comment);*/
+  } catch (e) {
+    badRequest(res, e);
+  }
+});
+
+export default router;
