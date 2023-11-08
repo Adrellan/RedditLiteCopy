@@ -11,6 +11,7 @@ import { NavbarComponent } from './part/navbar/navbar.component';
 import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { RegisterComponent } from './page/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonModule } from 'primeng/button';
 
@@ -26,8 +27,8 @@ import { ButtonModule } from 'primeng/button';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
-    ButtonModule
+    //RouterModule.forRoot(appRouting),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
