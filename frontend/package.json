@@ -23,6 +23,7 @@
     "hammerjs": "^2.0.8",
     "primeicons": "^6.0.1",
     "primeng": "^16.7.1",
+    "quill": "^1.3.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.2",
     "zone.js": "~0.13.0"

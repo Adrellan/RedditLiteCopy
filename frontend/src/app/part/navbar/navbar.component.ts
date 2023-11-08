@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, Optional } from '@angular/core';
 import { LoginComponent } from 'src/app/page/login/login.component';
->>>>>>> 81f686e (sallang)
 
 @Component({
   selector: 'app-navbar',
