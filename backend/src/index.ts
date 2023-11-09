@@ -7,6 +7,7 @@ import {performanceMiddleware} from "./middlewares/performace.mw";
 import apiRouter from "./api.router";
 import compression from "compression"
 import {logger} from "./config/logger.config";
+const settings = require('../package.json');
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use(compression());
 
 // Main router for /api prefix!
 app.use("/api", apiRouter)
+app.use("/", (req,res)=>res.send(settings.version))
 
 app.listen(port, () => {
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
