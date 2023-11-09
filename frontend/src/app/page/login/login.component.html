@@ -1,10 +1,10 @@
-<form [formGroup]="loginForm" (submit)="login()" autocomplete="new-password">
+<form>
     <img src="/assets/logo.png" alt="Logo" width="60" height="60" style="display: block; margin: 10px auto;">
     <h1>Bejelentkezés</h1>
 
-    <input formControlName="email" placeholder="Felhasználónév" text id="email" type="email" autocomplete="new-password">
+    <input placeholder="Felhasználónév" text id="email" type="email" autocomplete="on">
 
-    <input formControlName="password" placeholder="Jelszó" id="password" type="password" autocomplete="new-password">
+    <input placeholder="Jelszó" id="password" type="password" autocomplete="off">
 
     <div class="submit-button">
         <button type="submit">Bejelentkezés</button>
