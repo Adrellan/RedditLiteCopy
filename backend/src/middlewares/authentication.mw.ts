@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use((req: Request & { user?: { username: string } }, res: Response, next: NextFunction) => {
+export const authenticationMiddleware = ((req: Request & { user?: { username: string } }, res: Response, next: NextFunction) => {
 
   const authToken = req.cookies.AUTH_TOKEN as string;
   const authSignature = req.cookies.AUTH_SIGNATURE as string;
