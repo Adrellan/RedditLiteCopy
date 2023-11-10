@@ -2,13 +2,13 @@
     <img src="/assets/logo.png" alt="Logo" width="60" height="60" style="display: block; margin: 10px auto;">
     <h1>Bejelentkezés</h1>
 
-    <input placeholder="Felhasználónév" text id="email" type="email" autocomplete="on">
+    <input placeholder="Felhasználónév" text id="felhasznalonev">
 
-    <input placeholder="Jelszó" id="password" type="password" autocomplete="off">
+    <input placeholder="Jelszó" id="password" type="password">
 
     <div class="submit-button">
-        <button type="submit">Bejelentkezés</button>
-        <button type="button">Regisztráció</button>
+        <button type="submit" (click)="redirectToHome()">Bejelentkezés</button>
+        <button type="button" (click)="redirectToRegistration()">Regisztráció</button>
     </div>
 
 </form>
