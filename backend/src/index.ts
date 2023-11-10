@@ -43,5 +43,6 @@ app.use("/api", apiRouter)
 app.use("/", (req,res)=>res.send(settings.version))
 
 app.listen(port, () => {
+	console.log('Környezeti változók:', process.env);
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
 });

@@ -1,11 +1,12 @@
 import {model, Model, Schema} from "mongoose"
 import {baseEntityModel, IBaseEntity} from "./baseEntity.model";
 
-interface IUser extends IBaseEntity {
+export interface IUser extends IBaseEntity {
 	fullName: string;
 	userName: string;
 	password: string;
 	email: string;
+	salt: string;
 }
 
 interface UserModel extends Model<IUser> {
@@ -13,6 +14,11 @@ interface UserModel extends Model<IUser> {
 }
 
 export const userScheme = new Schema<IUser, UserModel>({
+	fullName: String,
+	userName: String,
+	password: String,
+	email: String,
+	salt: String,
 	...baseEntityModel
 })
 userScheme.statics.findActives = function () {
@@ -21,4 +27,3 @@ userScheme.statics.findActives = function () {
 
 
 export const User = model<IUser, UserModel>("User", userScheme);
-

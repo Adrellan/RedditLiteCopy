@@ -1,6 +1,3 @@
-
-
-
 export interface IBaseEntity {
 	// Used for logical removed
 	active: boolean,
