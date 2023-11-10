@@ -6,6 +6,7 @@
 *  Responsible user: Daniella
 *
 * */
+import {Request, Response, NextFunction } from 'express';
 
 
 const express = require('express');
@@ -15,36 +16,25 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT;
 
-// Middleware to parse cookies
+app.use(express.json());
 app.use(cookieParser());
 
-// JWT authentication middleware
-app.use((req: any, res: any, next: any) => {
-  const authToken = req.cookies.AUTH_TOKEN;
-  const authSignature = req.cookies.AUTH_SIGNATURE;
+app.use((req: Request & { user?: { username: string } }, res: Response, next: NextFunction) => {
+
+  const authToken = req.cookies.AUTH_TOKEN as string;
+  const authSignature = req.cookies.AUTH_SIGNATURE as string;
 
   if (!authToken || !authSignature) {
-    return res.status(401).json({ message: 'Missing JWT cookies.' });
+    return res.sendStatus(401);
   }
 
-  const token = `${authToken}.${authSignature}`;
-
-  // Verify the JWT using your secret key
-  jwt.verify(token, 'your-secret-key', (err: any, decoded: any) => {
-    if (err) {
-      return res.status(401).json({ message: 'Invalid JWT.' });
-    }
-
-    // Authentication successful
-    req.user = decoded; // Make user data available in the request object
+  try {
+    const decoded = jwt.verify(`${authToken}.${authSignature}`, process.env.JWT_SECRET_KEY) as { username: string };
+    req.user = decoded;
     next();
-  });
-});
-
-
-// Define your routes and application logic here
-app.listen(port, () => {
-	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
+  } catch (error) {
+    console.error(error);
+    return res.sendStatus(403); 
+  }
 });
