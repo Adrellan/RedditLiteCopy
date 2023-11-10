@@ -1,7 +1,7 @@
 import { Schema, Model, model } from "mongoose";
 import { IBaseEntity, baseEntityModel } from "./baseEntity.model";
 
-export interface ICommet extends IBaseEntity{
+export interface IComment extends IBaseEntity{
     text : string,
     author: [{
       type: Schema.Types.ObjectId, 
@@ -13,11 +13,11 @@ export interface ICommet extends IBaseEntity{
     }]
 }
 
-interface CommentModel extends Model<ICommet>{
+interface CommentModel extends Model<IComment>{
     findActives(): any
 }
 
-export const commentScheme = new Schema<ICommet, CommentModel>({
+export const commentScheme = new Schema<IComment, CommentModel>({
   text: String,
   author: [{
     type: Schema.Types.ObjectId,
@@ -36,4 +36,4 @@ commentScheme.statics.findActives = function(){
   return this.find({active:true});
 }
 
-export const Comment = model<ICommet, CommentModel>("Comment", commentScheme);
+export const Comment = model<IComment, CommentModel>("Comment", commentScheme);

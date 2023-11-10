@@ -6,6 +6,7 @@ export interface IUser extends IBaseEntity {
 	userName: string;
 	password: string;
 	email: string;
+	salt: string;
 }
 
 interface UserModel extends Model<IUser> {
@@ -13,6 +14,11 @@ interface UserModel extends Model<IUser> {
 }
 
 export const userScheme = new Schema<IUser, UserModel>({
+	fullName: String,
+	userName: String,
+	password: String,
+	email: String,
+	salt: String,
 	...baseEntityModel
 })
 userScheme.statics.findActives = function () {

@@ -1,4 +1,3 @@
-//TODO: Daniella ezek rád várnak ;)
 import { Router } from "express";
 import { IUser, User } from "../models/user.model";
 import crypto from "crypto";
@@ -7,57 +6,82 @@ import {badRequest, Ok} from "../helpers/response.helper";
 
 const router = Router();
 const jwt = require('jsonwebtoken');
+const {body, validationResult} = require('express-validator')
+const nodemailer = require("nodemailer");
 
 require('dotenv').config();
 
 const secretKey = process.env.JWT_SECRET_KEY
 
-router.post("/login", (req, res)=>{
-	const {username, password} = req.body;
+router.post("/login", async (req, res)=>{
+	const { userName, password } = req.body;
 
-	User.findOne({ userName: username }, (err: Error, user: any) => {
-	  if (err || !user) {
-		return res.status(401).json({ error: 'Érvénytelen felhasználónév vagy jelszó' });
-	  }
-	  setNewRecordInfo(user);
-	  if (!verifyPassword(password, user.password, user.salt)) {
-		return res.status(401).json({ error: 'Érvénytelen felhasználónév vagy jelszó' });
-	  }
-	  
-	  const token = jwt.sign({ username }, secretKey);
-	  res.cookie('auth_token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
-	  
-	  res.status(200).json({ message: 'Bejelentkezés sikeres' });
-	});
-	//TODO: ND -> Implement the login method: Response should contain a cookie that contains the JWT token itself.
+	try{
+		const user = await User.findOne({ userName });
+		if (!user){
+			return res.status(401).json({error: 'Invalid username or password'})
+		}
+		const isPasswordValid = verifyPassword(password, user.password, user.salt);
+
+		if (!isPasswordValid) {
+		return res.status(401).json({ error: 'Invalid username or password' });
+		}
+
+		const token = jwt.sign({ userName }, secretKey);
+
+		res.cookie('auth_token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
+
+		res.status(200).json({ message: 'Login successful' });
+	}catch{
+		res.status(500).json({ error: 'Login unsuccessful' });
+	}
 })
 
-
-router.post("/register", async (req,res)=>{
-	//TODO: ND -> Implement a register method -> use crypto lib to hash the password!!
+router.post("/register",[
+	body("fullName").notEmpty().withMessage("The full name field cannot be empty."),
+	body("userName").notEmpty().withMessage("The username cannot be empty.").custom(async (value: any) => {
+		const existingUser = await User.findOne({ userName: value});
+		if(existingUser){
+			throw new Error("The username is taken.");
+		}
+		return true;
+	}),
+	body("email").isEmail().withMessage("The email is invalid.")
+	.custom(async (value: any) => {
+		const existingUser = await User.findOne({ email: value});
+		if(existingUser){
+			throw new Error("The email address is already registered.");
+		}
+		return true;
+	}),
+	body("password").isLength({min: 8}).withMessage("It must be at least 8 characters long")
+], async (req: Request, res: any) => {
+	const errors = validationResult(req);
+	if(!errors.isEmpty()){
+		return res.status(400).json({errors: errors.array()});
+	}
 	try {
-		//const { fullName, userName, password, email } = req.body;
-		const user = req.body as IUser
+		const requestBody = req.body as unknown;
+		const user = requestBody as IUser
 		const salt = generateSalt();
 		
-		const hashedPassword = hashPassword(user.password, salt);
-		
+		user.password = hashPassword(user.password, salt);
+		user.salt = salt;
 		setNewRecordInfo(user);
-		const newUser = new User({
-			user
-		});
+		const newUser = new User({...user});
 		
 		await newUser.save();
+
+		sendConfirmationEmail(user.email);
 	
-		res.status(201).json({ message: 'Regisztráció sikeres' });
+		res.status(201).json({ message: 'Registration successful.' });
 	  } catch (e) {
-		res.status(400).json({ error: 'Sikertelen regisztráció' });
+		res.status(400).json({ error: 'Registration unsuccessful' });
 	  }
 	
 })
 
 router.get("/user/:id", async (req,res) => {
-	//TODO: Implement a method that gets the user by it's ID!
 	const {id} = req.params
 
 	try {
@@ -69,6 +93,12 @@ router.get("/user/:id", async (req,res) => {
 		badRequest(res, e);
 	}
 })
+
+router.get("/logout", (req, res) => {
+	res.clearCookie("auth_token");
+  
+	res.status(200).json({ message: 'Logout successful.' });
+  });
 
 export default router;
 
@@ -83,3 +113,28 @@ function hashPassword(password: string, salt: any) {
 function verifyPassword(password: string, hashedPassword: string, salt: any) {
 	return hashedPassword === hashPassword(password, salt);
 }
+
+function sendConfirmationEmail(email: String) {
+	const transporter = nodemailer.createTransport({
+	  service: 'Gmail', 
+	  auth: {
+		user: 'redditlitecopy@gmail.com',
+		pass: 'tllf rtdo iidi hjls'
+	  }
+	});
+  
+	const mailOptions = {
+	  from: 'redditlitecopy@gmail.com',
+	  to: email,
+	  subject: 'Regisztráció megerősítése',
+	  text: 'Kérjük, kattintson az alábbi linkre a regisztráció megerősítéséhez: http://localhost:3560/api/'
+	};
+  
+	transporter.sendMail(mailOptions, (error: Error, info: any) => {
+	  if (error) {
+		console.log('An error occurred while sending the email: ' + error);
+	  } else {
+		console.log('Confirmation email sent: ' + info.response);
+	  }
+	});
+  }
