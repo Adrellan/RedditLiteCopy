@@ -1,1 +1,14 @@
-<p>navbar works!</p>
+
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-10" />
+        </ng-template>
+        <ng-template>
+            <h1>ASD</h1>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <input type="text" pInputText placeholder="Search" class="w-full" />
+        </ng-template>
+    </p-menubar>
+</div>
