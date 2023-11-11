@@ -2,6 +2,8 @@ import {Router} from "express"
 import {IPost, Post} from "../models/post.model";
 import {setNewRecordInfo} from "../helpers/record.helper";
 import {badRequest, Ok} from "../helpers/response.helper";
+import { authenticationMiddleware } from '../middlewares/authentication.mw';
+
 const router = Router();
 
 
@@ -30,7 +32,7 @@ router.get("/:postId", async (req, res) => {
 	}
 })
 
-router.post("", async (req, res) => {
+router.post("", authenticationMiddleware, async (req, res) => {
 	//TODO: Implement to create a new post and set the author as the current user principle!
 	try {
 		const post = req.body as IPost;
@@ -48,7 +50,7 @@ router.post("", async (req, res) => {
 
 })
 
-router.put("/:postId", async (req, res) => {
+router.put("/:postId",authenticationMiddleware, async (req, res) => {
 	//TODO: Implement a modification for the according POST
 
 	try {
@@ -68,7 +70,7 @@ router.put("/:postId", async (req, res) => {
 
 })
 
-router.delete("/:postId", async (req, res) => {
+router.delete("/:postId",authenticationMiddleware, async (req, res) => {
 	try {
 		const {postId} = req.params;
 

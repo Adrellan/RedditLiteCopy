@@ -33,7 +33,7 @@ app.use(cors(CorsConfig));
 app.use(performanceMiddleware);
 
 /// Authentication
-app.use(authenticationMiddleware);
+//app.use("/api/logout", authenticationMiddleware);
 
 /// Response compression for optimal
 app.use(compression());

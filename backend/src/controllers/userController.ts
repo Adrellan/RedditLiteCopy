@@ -3,6 +3,8 @@ import { IUser, User } from "../models/user.model";
 import crypto from "crypto";
 import {setNewRecordInfo} from "../helpers/record.helper";
 import {badRequest, Ok} from "../helpers/response.helper";
+import { authenticationMiddleware } from '../middlewares/authentication.mw';
+
 
 const router = Router();
 const jwt = require('jsonwebtoken');
@@ -71,7 +73,9 @@ router.post("/register",[
 		user.salt = salt;
 		setNewRecordInfo(user);
 		const newUser = new User({...user});
-		
+
+		const userName = user.userName;
+	
 		await newUser.save();
 
 		sendConfirmationEmail(user.email);
@@ -96,9 +100,11 @@ router.get("/user/:id", async (req,res) => {
 	}
 })
 
-router.get("/logout", (req, res) => {
-	res.clearCookie("auth_token");
-  
+router.get("/logout",authenticationMiddleware, (req, res) => {
+	res.clearCookie("AUTH_TOKEN");
+	res.clearCookie("AUTH_SIGNATURE");
+	
+
 	res.status(200).json({ message: 'Logout successful.' });
   });
 
