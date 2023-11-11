@@ -39,6 +39,7 @@ jobs:
           password: ${{secrets.HEROKU_API_KEY}}
       - name: "Build and Deploy to Heroku Registry"
         run: |
+          export HEROKU_API_KEY=${{secrets.HEROKU_API_KEY}}}
           echo "Installing heroku..."
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
           cd backend
