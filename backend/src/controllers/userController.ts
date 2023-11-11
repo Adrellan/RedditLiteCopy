@@ -28,8 +28,10 @@ router.post("/login", async (req, res)=>{
 		}
 
 		const token = jwt.sign({ userName }, secretKey);
-
-		res.cookie('auth_token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
+		
+		const [header, payload, signature] = token.split('.');
+		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: true});
+		res.cookie('AUTH_SIGNATURE', signature, { httpOnly: true });
 
 		res.status(200).json({ message: 'Login successful' });
 	}catch{
