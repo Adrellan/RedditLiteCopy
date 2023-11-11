@@ -9,6 +9,17 @@ import { NavbarComponent } from './part/navbar/navbar.component';
 import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { RegisterComponent } from './page/register/register.component';
+import { PostItemComponent } from './part/post-item/post-item.component';
+import { PostListComponent } from './part/post-list/post-list.component';
+import {PanelModule} from "primeng/panel";
+import {InputTextModule} from "primeng/inputtext";
+import {MaterialModule} from "../material.modules";
+import {AccordionModule} from "primeng/accordion";
+import {ToolbarModule} from "primeng/toolbar";
+import { CreatePostComponent } from './part/create-post/create-post.component';
+import {InputTextareaModule} from "primeng/inputtextarea";
+import { UserBannerComponent } from './part/user-banner/user-banner.component';
+import {DividerModule} from "primeng/divider";
 
 @NgModule({
   declarations: [
@@ -17,10 +28,21 @@ import { RegisterComponent } from './page/register/register.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    PostItemComponent,
+    PostListComponent,
+    CreatePostComponent,
+    UserBannerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PanelModule,
+    InputTextModule,
+    MaterialModule,
+    AccordionModule,
+    ToolbarModule,
+    InputTextareaModule,
+    DividerModule,
     //RouterModule.forRoot(appRouting),
   ],
   providers: [],

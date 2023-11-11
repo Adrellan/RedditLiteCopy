@@ -1,0 +1,52 @@
+<div class="post-item" style="margin: 2em 0;">
+  <p-panel>
+    <ng-template pTemplate="header">
+      <div style="width: 100%">
+        <div class="panel-header">
+          <div>
+            Header
+          </div>
+          <div>
+            <app-user-banner fullName="Kis István"></app-user-banner>
+          </div>
+        </div>
+        <div>
+          <p-divider/>
+        </div>
+      </div>
+
+
+    </ng-template>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet aut culpa expedita fugit quasi quis sint sit?
+    Consectetur eaque fuga in iusto officia porro quas quibusdam recusandae voluptatem voluptatum.
+    <div class="panel-bottom-toolbar">
+
+    </div>
+  </p-panel>
+  <p-toolbar styleClass="post-toolbar">
+    <div class="p-toolbar-group-start">
+      <div>
+        <i class="pi pi-comments" ></i>
+        <span>
+          Hozzászólások
+        </span>
+      </div>
+      <i class="pi pi-share-alt" style="color: dodgerblue"></i>
+      <div>
+        <i class="pi pi-bookmark-fill" style="color: #f7b928"></i>
+        <span>
+          Mentés
+        </span>
+      </div>
+
+    </div>
+    <div class="p-toolbar-group-end">
+      <i class="pi pi-thumbs-up" *ngIf="!liked" style="margin-right: 0.5em" (click)="likePost()"></i>
+      <i class="pi pi-thumbs-up-fill" *ngIf="liked" style="margin-right: 0.5em" (click)="likePost()"></i>
+      <i class="pi pi-thumbs-down-fill" *ngIf="disliked" style="margin-right: 0.5em" (click)="dislikePost()"></i>
+      <i class="pi pi-thumbs-down" *ngIf="!disliked" style="margin-right: 0.5em" (click)="dislikePost()"></i>
+    </div>
+  </p-toolbar>
+
+
+</div>
