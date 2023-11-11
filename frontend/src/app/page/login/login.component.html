@@ -1,3 +1,14 @@
+<form>
+    <img src="/assets/logo.png" alt="Logo" width="60" height="60" style="display: block; margin: 10px auto;">
+    <h1>Bejelentkezés</h1>
 
-<p>login works!</p>
+    <input placeholder="Felhasználónév" text id="felhasznalonev">
 
+    <input placeholder="Jelszó" id="password" type="password">
+
+    <div class="submit-button">
+        <button type="submit" (click)="redirectToHome()">Bejelentkezés</button>
+        <button type="button" (click)="redirectToRegistration()">Regisztráció</button>
+    </div>
+
+</form>

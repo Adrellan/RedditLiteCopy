@@ -1,4 +1,5 @@
 import { Router } from "express";
+import express, { Express, Request, Response,NextFunction } from 'express';
 import { IComment, Comment } from "../models/comment.model";
 import { setNewRecordInfo } from "../helpers/record.helper";
 import { badRequest, Ok } from "../helpers/response.helper";
