@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
-import { PrimeFacesModule } from 'src/primefaces.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './part/navbar/navbar.component';
 import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { RegisterComponent } from './page/register/register.component';
-
 import { PostItemComponent } from './part/post-item/post-item.component';
 import { PostListComponent } from './part/post-list/post-list.component';
 import {PanelModule} from "primeng/panel";
@@ -22,9 +20,6 @@ import { CreatePostComponent } from './part/create-post/create-post.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import {DividerModule} from "primeng/divider";
-
-import { ButtonModule } from 'primeng/button';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserBannerComponent,
   ],
   imports: [
-    BrowserAnimationsModule,
+    BrowserModule,
     AppRoutingModule,
     PanelModule,
     InputTextModule,
@@ -49,7 +44,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputTextareaModule,
     DividerModule,
     //RouterModule.forRoot(appRouting),
-    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
