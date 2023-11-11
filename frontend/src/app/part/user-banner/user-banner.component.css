@@ -1,0 +1,11 @@
+.user-banner{
+  width: 40px;
+  height: 40px;
+  background-color: #ba280d;
+  border-radius: 100%;
+  color:white;
+  font-weight: bolder;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
