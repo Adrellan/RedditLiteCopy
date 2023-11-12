@@ -11,25 +11,20 @@ h1{
 }
 
 input{
-    height: 45px;
     width: 100%;
-    margin-bottom: 35px;
     padding-left: 5px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
     border: 1px solid black;
+    margin-top: 1em;
 }
-.submit-button{
-    display: flex;
-}
- button{
-    margin: 10px;
-    width: 50%;
-    height: 50px;
-    background-color: rgb(43, 96, 29);
-    color: white;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    font-family: 'Times New Roman', Times, serif;
 
- }
+button{
+    width: 80%;
+    margin: 2vh auto;
+    display: block;
+}
+
+.p-field{
+    margin-top: 2vh;
+}

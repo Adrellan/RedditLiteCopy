@@ -1,13 +1,27 @@
-<!-- <form [formGroup]="loginForm" (submit)="login()" autocomplete="new-password">
-    <img src="/assets/logo.png" alt="Logo" width="60" height="60" style="display: block; margin: 10px auto;">
-    <h1>Bejelentkezés</h1>
+<div>
+    <form (ngSubmit)="login()">
+        <div class="p-field">
+            <span class="p-float-label">
+                <input id="username" name="username" type="text" [(ngModel)]="loginData.username" pInputText required>
+                <label for="username">Felhasználónév</label>
+            </span>
+        </div>
 
-    <input formControlName="email" placeholder="Felhasználónév" text id="email" type="email" autocomplete="new-password">
+        <div class="p-field">
+            <span class="p-float-label">
+                <input id="password" name="password" type="password" [(ngModel)]="loginData.password" pInputText
+                    required>
+                <label for="password">Jelszó</label>
+            </span>
+        </div>
 
-    <input formControlName="password" placeholder="Jelszó" id="password" type="password" autocomplete="new-password">
+        <div class="p-field">
+            <div>
+                <button pButton pRipple type="submit" label="Bejelentkezés"
+                    class="p-button-rounded p-button-success"></button>
+            </div>
+        </div>
 
-    <div class="submit-button">
-        <button type="submit">Bejelentkezés</button>
-        <button type="button">Regisztráció</button>
-    </div>
-</form> -->☻
+        <p>Új felhasználó vagy? <a (click)="openRegistrationDialog()">Regisztálj</a></p>
+    </form>
+</div>
