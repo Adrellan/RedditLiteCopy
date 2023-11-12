@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterComponent } from '../register/register.component';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit{
     private router: Router, 
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
+    private apiService: ApiService
     ) {}
 
   openRegistrationDialog() {
@@ -39,8 +41,15 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {}
 
-  login() {
-    this.ref.close();
+  async login() {
+    this.apiService.postLogin(this.loginData).then(
+      response => {
+        console.log('Login Successful:', response);
+        this.ref.close();
+      },
+    ).catch(error => {
+      console.log(error);
+    })
   }
 
   redirectToHome(){

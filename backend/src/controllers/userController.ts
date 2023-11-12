@@ -28,12 +28,13 @@ router.post("/login", async (req, res)=>{
 		if (!isPasswordValid) {
 		return res.status(401).json({ error: 'Invalid username or password' });
 		}
+		const fullName = user.fullName;
 
-		const token = jwt.sign({ userName }, secretKey);
+		const token = jwt.sign({ fullName, userName }, secretKey);
 		
 		const [header, payload, signature] = token.split('.');
-		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: true});
-		res.cookie('AUTH_SIGNATURE', signature, { httpOnly: true });
+		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: false, secure: true, path:"/" });
+		res.cookie('AUTH_SIGNATURE', signature, { httpOnly: false, secure: true, path:"/" });
 
 		res.status(200).json({ message: 'Login successful' });
 	}catch{
