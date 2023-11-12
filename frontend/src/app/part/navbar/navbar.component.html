@@ -1,23 +1,7 @@
-<<<<<<< HEAD
-
-<div class="card">
-    <p-menubar [model]="items">
-        <ng-template pTemplate="start">
-            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-10" />
-        </ng-template>
-        <ng-template>
-            <h1>ASD</h1>
-        </ng-template>
-        <ng-template pTemplate="end">
-            <input type="text" pInputText placeholder="Search" class="w-full" />
-        </ng-template>
-    </p-menubar>
-</div>
-=======
 <nav class="navbar">
   <div class="start">
-    <img src="assets/logo.svg" width="50px" height="50px" style="mix-blend-mode: multiply">
-    <h1 class="" style="color: white;">Reddit Lite Copy</h1>
+    <img src="assets/logo.svg" routerLink="/" width="50px" height="50px" style="mix-blend-mode: multiply">
+    <h1 class="" style="color: white; margin-left: 1vw;">Reddit Lite Copy</h1>
   </div>
   <div class="center">
     <span class="p-input-icon-left search-panel" style="width: 100%;">
@@ -27,7 +11,13 @@
 
   </div>
   <div class="end">
-    <i class="pi pi-user" style="cursor: pointer; color: white; font-size: x-large"></i>
+    <!-- <i class="pi pi-user" style="cursor: pointer; color: white; font-size: x-large"></i> -->
+    <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <button pButton 
+      type="button" 
+      (click)="menu.toggle($event)" 
+      icon="pi pi-bars" 
+      style="background-color: white; color: #579257;">
+      </button>
   </div>
 </nav>
->>>>>>> origin/mol3sz
