@@ -1,33 +1,32 @@
 form{
-    max-width: 400px;
+    max-width: 30vw;
     margin: 250px auto;
     padding: 16px 16px 24px;
     box-shadow: 0 2px 32px rgb(0,0,0,0.15);
     border-radius: 10px;
 }
+
 h1{
     text-align: center;
     margin-bottom: 40px;
 }
 
 input{
-    height: 45px;
     width: 100%;
-    margin-bottom: 30px;
     padding-left: 5px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
     border: 1px solid black;
+    margin-top: 1em;
 }
- button{
-    display: block;
-    margin: 10px auto;
-    width: 50%;
-    height: 50px;
-    background-color: rgb(43, 96, 29);
-    color: white;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    font-family: 'Times New Roman', Times, serif;
 
- }
+ button{
+    width: 80%;
+    margin: 2vh auto;
+    display: block;
+}
+
+.p-field{
+    margin-top: 2vh;
+}
+

@@ -1,1 +1,23 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="start">
+    <img src="assets/logo.svg" routerLink="/" width="50px" height="50px" style="mix-blend-mode: multiply">
+    <h1 class="" style="color: white; margin-left: 1vw;">Reddit Lite Copy</h1>
+  </div>
+  <div class="center">
+    <span class="p-input-icon-left search-panel" style="width: 100%;">
+      <i class="pi pi-search" style="color: whitesmoke"></i>
+      <input type="text" pInputText placeholder="Search posts..." style="border-radius: 2em ; width: 100%" />
+    </span>
+
+  </div>
+  <div class="end">
+    <!-- <i class="pi pi-user" style="cursor: pointer; color: white; font-size: x-large"></i> -->
+    <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <button pButton 
+      type="button" 
+      (click)="menu.toggle($event)" 
+      icon="pi pi-bars" 
+      style="background-color: white; color: #579257;">
+      </button>
+  </div>
+</nav>

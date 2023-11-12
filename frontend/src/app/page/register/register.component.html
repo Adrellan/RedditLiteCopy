@@ -1,15 +1,40 @@
-<form>
-    <img src="/assets/logo.png" alt="Logo" width="60" height="60" style="display: block; margin: 10px auto;">
-    <h1>Regisztráció</h1>
+<!-- TYPESCRIPT INTEFACE USERRE MEG POST-RA -->
+<div>
+  <form (ngSubmit)="register()">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="name" name="name" type="text" [(ngModel)]="user.name" pInputText required>
+        <label for="username">Teljes név</label>
+      </span>
+    </div>
 
-    <input  placeholder="Teljes név" text id="nev" type="text">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="username" name="username" type="text" [(ngModel)]="user.username" pInputText required>
+        <label for="username">Felhasználónév</label>
+      </span>
+    </div>
 
-    <input  placeholder="Felhasználónév" text id="felhasznalonev" type="text" >
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="email" name="email" type="email" [(ngModel)]="user.email" pInputText required>
+        <label for="email">E-mail cím</label>
+      </span>
+    </div>
 
-    <input  placeholder="Email-cím" text id="email" type="email" >
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="password" name="password" type="password" [(ngModel)]="user.password" pInputText required>
+        <label for="password">Jelszó</label>
+      </span>
+    </div>
 
-    <input  placeholder="Jelszó" id="password" type="password" >
+    <div class="p-field">
+      <div>
+        <button pButton pRipple type="submit" label="Regisztráció" class="p-button-rounded p-button-success"></button>
+      </div>
+    </div>
 
-    <button type="button" (click)="redirectToHome()">Regisztráció</button>
-
-</form>
+    <p>Már felhasználó vagy? <a (click)="openLoginDialog()">Jelentkezz be</a></p>
+  </form>
+</div>

@@ -1,12 +1,15 @@
-import {Schema, model, Model, Query} from "mongoose"
+import {model, Model, Schema} from "mongoose"
 import {baseEntityModel, IBaseEntity} from "./baseEntity.model";
-
-export interface IPost extends IBaseEntity{
+import {autopopulatePlugin} from "../config/db.config";
+export interface IPost extends IBaseEntity {
 	name: string;
 	title: string,
-	author: [{
+	author: {
 		type: Schema.Types.ObjectId, ref: "User"
-	}],
+	},
+	comments: [{
+		type: Schema.Types.ObjectId, ref: "Comment"
+	}]
 	content: string
 }
 interface PostModel extends Model<IPost> {
@@ -15,23 +18,25 @@ interface PostModel extends Model<IPost> {
 
 export const postScheme = new Schema<IPost, PostModel>({
 	title: String,
-	author: [{
-		type: Schema.Types.ObjectId, ref: "User"
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+		autopopulate: {select:'userName fullName email'},
+	},
+	comments: [{
+		type: Schema.Types.ObjectId, ref: "Comment", autopopulate: true
 	}],
 	content: String,
-
-	//TODO: Extend the model accordingly
-
-	// Base entity
 	...baseEntityModel
 })
-postScheme.statics.findActives = function(){
-	return this.find({active:true});
+postScheme.plugin(autopopulatePlugin)
+
+
+postScheme.statics.findActives = function () {
+	return this.find({active: true})
 }
 
-
-
 // Post model
-export const Post = model<IPost, PostModel>("Post", postScheme);
+export const Post = model<IPost, PostModel>("Post", postScheme, "posts");
 
 
