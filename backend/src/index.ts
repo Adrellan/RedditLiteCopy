@@ -4,6 +4,7 @@ import cors from "cors"
 import {CorsConfig} from "./config/cors.config";
 import {db} from "./config/db.config";
 import {performanceMiddleware} from "./middlewares/performace.mw";
+import { authenticationMiddleware } from './middlewares/authentication.mw';
 import apiRouter from "./api.router";
 import compression from "compression"
 import {logger} from "./config/logger.config";
@@ -30,6 +31,9 @@ app.use(cors(CorsConfig));
 
 /// Performance
 app.use(performanceMiddleware);
+
+/// Authentication
+//app.use("/api/logout", authenticationMiddleware);
 
 /// Response compression for optimal
 app.use(compression());

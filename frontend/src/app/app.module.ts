@@ -13,11 +13,14 @@ import { NavbarComponent } from './part/navbar/navbar.component';
 import { LoginComponent } from './page/login/login.component';
 import { HomeComponent } from './page/home/home.component';
 import { RegisterComponent } from './page/register/register.component';
+<<<<<<< HEAD
 import { PostItemComponent } from './part/post-item/post-item.component';
 import { PostListComponent } from './part/post-list/post-list.component';
 import { CreatePostComponent } from './part/create-post/create-post.component';
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import { DividerModule } from 'primeng/divider';
+=======
+>>>>>>> origin/staging
 
 @NgModule({
   declarations: [

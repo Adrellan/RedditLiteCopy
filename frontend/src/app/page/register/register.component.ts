@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+<<<<<<< HEAD
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
+=======
+>>>>>>> origin/staging
 
 @Component({
   selector: 'app-register',
@@ -11,6 +14,7 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+<<<<<<< HEAD
   user: any = {};
 
   constructor(
@@ -43,5 +47,11 @@ export class RegisterComponent {
 
   cancel() {
     this.ref.close();
+=======
+  constructor(private router: Router) { }
+
+  redirectToHome(){
+    this.router.navigate(['/**']);
+>>>>>>> origin/staging
   }
 }

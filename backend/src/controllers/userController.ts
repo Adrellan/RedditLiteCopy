@@ -3,6 +3,8 @@ import { IUser, User } from "../models/user.model";
 import crypto from "crypto";
 import {setNewRecordInfo} from "../helpers/record.helper";
 import {badRequest, Ok} from "../helpers/response.helper";
+import { authenticationMiddleware } from '../middlewares/authentication.mw';
+
 
 const router = Router();
 const jwt = require('jsonwebtoken');
@@ -28,8 +30,10 @@ router.post("/login", async (req, res)=>{
 		}
 
 		const token = jwt.sign({ userName }, secretKey);
-
-		res.cookie('auth_token', token, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 3600000 });
+		
+		const [header, payload, signature] = token.split('.');
+		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: true});
+		res.cookie('AUTH_SIGNATURE', signature, { httpOnly: true });
 
 		res.status(200).json({ message: 'Login successful' });
 	}catch{
@@ -69,7 +73,9 @@ router.post("/register",[
 		user.salt = salt;
 		setNewRecordInfo(user);
 		const newUser = new User({...user});
-		
+
+		const userName = user.userName;
+	
 		await newUser.save();
 
 		sendConfirmationEmail(user.email);
@@ -94,9 +100,11 @@ router.get("/user/:id", async (req,res) => {
 	}
 })
 
-router.get("/logout", (req, res) => {
-	res.clearCookie("auth_token");
-  
+router.get("/logout",authenticationMiddleware, (req, res) => {
+	res.clearCookie("AUTH_TOKEN");
+	res.clearCookie("AUTH_SIGNATURE");
+	
+
 	res.status(200).json({ message: 'Logout successful.' });
   });
 

@@ -7,10 +7,17 @@ import { RegisterComponent } from '../page/register/register.component';
 
 
 const routes: Routes = [
+<<<<<<< HEAD
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '**', component: HomeComponent}
+=======
+ {path: '', component: HomeComponent},
+ {path: 'login', component: LoginComponent},
+ {path: 'register', component: RegisterComponent},
+ {path: '**', component: HomeComponent}
+>>>>>>> origin/staging
 ]
 
 @NgModule({
