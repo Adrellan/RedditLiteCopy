@@ -1,1 +1,40 @@
-<p>register works!</p>
+<!-- TYPESCRIPT INTEFACE USERRE MEG POST-RA -->
+<div>
+  <form (ngSubmit)="register()">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="name" name="name" type="text" [(ngModel)]="user.name" pInputText required>
+        <label for="username">Teljes név</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="username" name="username" type="text" [(ngModel)]="user.username" pInputText required>
+        <label for="username">Felhasználónév</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="email" name="email" type="email" [(ngModel)]="user.email" pInputText required>
+        <label for="email">E-mail cím</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="password" name="password" type="password" [(ngModel)]="user.password" pInputText required>
+        <label for="password">Jelszó</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <div>
+        <button pButton pRipple type="submit" label="Regisztráció" class="p-button-rounded p-button-success"></button>
+      </div>
+    </div>
+
+    <p>Már felhasználó vagy? <a (click)="openLoginDialog()">Jelentkezz be</a></p>
+  </form>
+</div>
