@@ -3,6 +3,8 @@ import express, { Express, Request, Response,NextFunction } from 'express';
 import { IComment, Comment } from "../models/comment.model";
 import { setNewRecordInfo } from "../helpers/record.helper";
 import { badRequest, Ok } from "../helpers/response.helper";
+import { authenticationMiddleware } from '../middlewares/authentication.mw';
+
 
 const router = Router();
 
@@ -28,7 +30,7 @@ router.get("/:commentId", async (req, res) => {
   }
 });
 
-router.post("", async (req, res) => {
+router.post("",authenticationMiddleware, async (req, res) => {
   try {
     const comment = req.body as IComment;
 
@@ -43,7 +45,7 @@ router.post("", async (req, res) => {
   }
 });
 
-router.put("/:commentId", async (req, res) => {
+router.put("/:commentId", authenticationMiddleware, async (req, res) => {
   try {
     const { commentId } = req.params;
     const modifiedComment = req.body as IComment;
@@ -60,7 +62,7 @@ router.put("/:commentId", async (req, res) => {
   }
 });
 
-router.delete("/:commentId", async (req, res) => {
+router.delete("/:commentId",authenticationMiddleware, async (req, res) => {
   try {
     const { commentId } = req.params;
 
