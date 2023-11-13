@@ -35,4 +35,11 @@ export class ApiService {
       return this.baseApiService.getApi().get('/logout');
   }
 
+  isLoggedIn(): boolean{
+    const token1 = this.authService.getCookie('AUTH_TOKEN');
+    const token2 = this.authService.getCookie('AUTH_SIGNATURE');
+
+    return !(token1 == null || token2 == null);
+  }
+
 }

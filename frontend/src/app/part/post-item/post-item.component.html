@@ -4,12 +4,15 @@
       <div style="width: 100%">
         <div class="panel-header">
           <div>
+            <strong>
+            {{postItem.title ||"Még nem tudom mi a címem :\\"}}
+
+              </strong>
             <!-- TITLE -->
-            Header
           </div>
           <div>
             <!-- AUTHOR.FULLNAME -->
-            <app-user-banner fullName="Kis István"></app-user-banner>
+            <app-user-banner fullName="{{postItem.author?.fullName}}"></app-user-banner>
           </div>
         </div>
         <div>
@@ -19,9 +22,10 @@
 
 
     </ng-template>
-    <!-- CONTENT -->
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet aut culpa expedita fugit quasi quis sint sit?
-    Consectetur eaque fuga in iusto officia porro quas quibusdam recusandae voluptatem voluptatum.
+    <div class="post-content">
+        {{postItem.content || "Még üres vagyok :\\" }}
+    </div>
+  
     <div class="panel-bottom-toolbar">
 
     </div>
@@ -36,8 +40,12 @@
       </div>
       <i class="pi pi-share-alt" style="color: dodgerblue"></i>
       <div>
-        <i class="pi pi-bookmark-fill" style="color: #f7b928"></i>
-        <span>
+        <i class="pi pi-bookmark-fill" *ngIf="saved" style="color: #f7b928" (click)="savePost()"></i>
+        <i class="pi pi-bookmark" *ngIf="!saved" style="color: #f7b928" (click)="savePost()"></i>
+        <span *ngIf="saved">
+          Mentve
+        </span>
+        <span *ngIf="!saved">
           Mentés
         </span>
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "reddit-lite-copy",
-  "version": "0.0.0",
+  "version": "0.23.11.13a",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

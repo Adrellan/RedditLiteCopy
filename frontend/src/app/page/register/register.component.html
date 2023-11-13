@@ -1,5 +1,8 @@
 <!-- TYPESCRIPT INTEFACE USERRE MEG POST-RA -->
 <div>
+  <div class="logo">
+    <p-image src="./../../../assets/logo.png" alt="Image" width="150px" height="150px"></p-image>
+  </div>
   <form (ngSubmit)="register()">
     <div class="p-field">
       <span class="p-float-label">
@@ -35,6 +38,6 @@
       </div>
     </div>
 
-    <p>Már felhasználó vagy? <a (click)="openLoginDialog()">Jelentkezz be</a></p>
+    <p>Már felhasználó vagy? <span (click)="openLoginDialog()" style="color:#579257; cursor: pointer;">Jelentkezz be</span></p>
   </form>
 </div>

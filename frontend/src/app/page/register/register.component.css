@@ -1,11 +1,9 @@
 form{
-    max-width: 30vw;
-    margin: 250px auto;
-    padding: 16px 16px 24px;
-    box-shadow: 0 2px 32px rgb(0,0,0,0.15);
+    /*margin: 250px auto;*/
+    padding: 16px;
+    /*box-shadow: 0 2px 32px rgb(0,0,0,0.15);*/
     border-radius: 10px;
 }
-
 h1{
     text-align: center;
     margin-bottom: 40px;
@@ -17,7 +15,6 @@ input{
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
     border: 1px solid black;
-    margin-top: 1em;
 }
 
  button{
@@ -27,6 +24,11 @@ input{
 }
 
 .p-field{
-    margin-top: 2vh;
+    margin-top: 2em;
 }
 
+.logo{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
