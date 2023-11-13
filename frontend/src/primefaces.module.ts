@@ -38,9 +38,11 @@ import { SkeletonModule } from 'primeng/skeleton';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   imports: [
+    SkeletonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -76,6 +78,7 @@ import { MessageService } from 'primeng/api';
     SkeletonModule,
   ],
   exports: [
+    SkeletonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
