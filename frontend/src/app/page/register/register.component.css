@@ -27,3 +27,8 @@ input{
     margin-top: 2em;
 }
 
+.logo{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}

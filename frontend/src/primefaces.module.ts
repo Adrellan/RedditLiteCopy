@@ -35,10 +35,10 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChipModule } from 'primeng/chip';
 import { ImageModule } from 'primeng/image';
 import { SkeletonModule } from 'primeng/skeleton';
+import { DividerModule } from 'primeng/divider';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
-import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   imports: [
@@ -76,6 +76,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     ChipModule,
     ImageModule,
     SkeletonModule,
+    DividerModule,
   ],
   exports: [
     SkeletonModule,
@@ -112,6 +113,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     ChipModule,
     ImageModule,
     SkeletonModule,
+    DividerModule,
   ],
   providers: [DialogService, MessageService, DynamicDialogRef],
 })

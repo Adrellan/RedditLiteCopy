@@ -66,8 +66,8 @@ export class NavbarComponent implements OnInit {
   showLoginDialog() {
     const ref = this.dialogService.open(LoginComponent, {
       header: 'Bejelentkezés',
-      width: '480px',
-      height: '600px',
+      width: '500px',
+      height: '750px',
       
       contentStyle: {width:"100%", display:"flex",justifyContent:"center", alignItems:"center"},
       baseZIndex: 10000,

@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit{
   openRegistrationDialog() {
     const ref = this.dialogService.open(RegisterComponent, {
       header: 'Regisztráció',
-      width: '480px',
-      height: '600px',
+      width: '500px',
+      height: '850px',
       
       contentStyle: {width:"100%", display:"flex",justifyContent:"center", alignItems:"center"},
       baseZIndex: 10000,
