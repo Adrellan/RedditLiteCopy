@@ -35,9 +35,11 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   imports: [
+    SkeletonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -70,6 +72,7 @@ import { MessageService } from 'primeng/api';
     DynamicDialogModule,
   ],
   exports: [
+    SkeletonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
