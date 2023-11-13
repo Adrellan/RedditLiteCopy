@@ -32,6 +32,8 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ChipModule } from 'primeng/chip';
+import { ImageModule } from 'primeng/image';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
@@ -68,6 +70,8 @@ import { MessageService } from 'primeng/api';
     SpeedDialModule,
     DialogModule,
     DynamicDialogModule,
+    ChipModule,
+    ImageModule,
   ],
   exports: [
     BrowserModule,
@@ -100,11 +104,9 @@ import { MessageService } from 'primeng/api';
     SpeedDialModule,
     DialogModule,
     DynamicDialogModule,
+    ChipModule,
+    ImageModule,
   ],
-  providers: [
-    DialogService,
-    MessageService,
-    DynamicDialogRef,
-  ],
+  providers: [DialogService, MessageService, DynamicDialogRef],
 })
 export class PrimeFacesModule {}
