@@ -79,7 +79,6 @@ router.post("/register",[
 	
 		await newUser.save();
 
-		sendConfirmationEmail(user.email);
 	
 		res.status(201).json({ message: 'Registration successful.' });
 	  } catch (e) {
@@ -102,11 +101,20 @@ router.get("/user/:id", async (req,res) => {
 })
 
 router.get("/logout",authenticationMiddleware, (req, res) => {
-	res.clearCookie("AUTH_TOKEN");
-	res.clearCookie("AUTH_SIGNATURE");
+	const errors = validationResult(req);
+	if (!errors.isEmpty()){
+		console.log('Nincs hozzáférés.');
+		res.status(401).json({error: "Nincs hozzáférés"});
+	}
+	else{
+		res.clearCookie("AUTH_TOKEN");
+		res.clearCookie("AUTH_SIGNATURE");
 	
+		console.log('Logout successful.');
 
-	res.status(200).json({ message: 'Logout successful.' });
+		res.status(200).json({ message: 'Logout successful.' });
+	}
+	
   });
 
 export default router;
@@ -122,28 +130,3 @@ function hashPassword(password: string, salt: any) {
 function verifyPassword(password: string, hashedPassword: string, salt: any) {
 	return hashedPassword === hashPassword(password, salt);
 }
-
-function sendConfirmationEmail(email: String) {
-	const transporter = nodemailer.createTransport({
-	  service: 'Gmail', 
-	  auth: {
-		user: 'redditlitecopy@gmail.com',
-		pass: 'tllf rtdo iidi hjls'
-	  }
-	});
-  
-	const mailOptions = {
-	  from: 'redditlitecopy@gmail.com',
-	  to: email,
-	  subject: 'Regisztráció megerősítése',
-	  text: 'Kérjük, kattintson az alábbi linkre a regisztráció megerősítéséhez: http://localhost:3560/api/'
-	};
-  
-	transporter.sendMail(mailOptions, (error: Error, info: any) => {
-	  if (error) {
-		console.log('An error occurred while sending the email: ' + error);
-	  } else {
-		console.log('Confirmation email sent: ' + info.response);
-	  }
-	});
-  }

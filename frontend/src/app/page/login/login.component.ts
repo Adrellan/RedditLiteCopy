@@ -54,6 +54,18 @@ export class LoginComponent implements OnInit{
     })
   }
 
+  async tesztGomb(){
+    console.log("mukodik a tesztgomb");
+    this.apiService.getLogout().then(
+      response => {
+        console.log('Logout Succesfull:', response);
+        this.ref.close();
+      },
+    ).catch(error => {
+      console.log(error);
+    })
+  }
+
   redirectToHome(){
     this.router.navigate(['/']);
   }
