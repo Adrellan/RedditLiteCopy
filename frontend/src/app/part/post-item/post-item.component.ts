@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { createInjectableType } from '@angular/compiler';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-post-item',
@@ -7,12 +8,20 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class PostItemComponent implements OnInit{
+
+  @Input() postItem: any;
   liked:boolean = false;
   disliked:boolean = false;
+  
+  saved:boolean = false;
 
   ngOnInit(): void {
+    console.log(this.postItem)
   }
 
+  savePost(){
+    this.saved = !this.saved;
+  }
 
   likePost(){
       this.liked = !this.liked;

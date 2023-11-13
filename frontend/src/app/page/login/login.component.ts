@@ -25,10 +25,12 @@ export class LoginComponent implements OnInit{
   openRegistrationDialog() {
     const ref = this.dialogService.open(RegisterComponent, {
       header: 'Regisztráció',
-      width: '40%',
-      contentStyle: { 'max-height': '50vh', overflow: 'auto' },
+      width: '480px',
+      height: '600px',
+      
+      contentStyle: {width:"100%", display:"flex",justifyContent:"center", alignItems:"center"},
       baseZIndex: 10000,
-      maximizable: true
+      maximizable: true,
     });
     
     this.ref.close();
