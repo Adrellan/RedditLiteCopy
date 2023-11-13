@@ -34,6 +34,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ChipModule } from 'primeng/chip';
 import { ImageModule } from 'primeng/image';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
@@ -72,6 +73,7 @@ import { MessageService } from 'primeng/api';
     DynamicDialogModule,
     ChipModule,
     ImageModule,
+    SkeletonModule,
   ],
   exports: [
     BrowserModule,
@@ -106,6 +108,7 @@ import { MessageService } from 'primeng/api';
     DynamicDialogModule,
     ChipModule,
     ImageModule,
+    SkeletonModule,
   ],
   providers: [DialogService, MessageService, DynamicDialogRef],
 })

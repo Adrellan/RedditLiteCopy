@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
     private router: Router, 
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
-    private apiService: ApiService
+    private apiService: ApiService,
     ) {}
 
   openRegistrationDialog() {
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit{
     })
   }
 
-  async tesztGomb(){
+  async LogOut(){
     console.log("mukodik a tesztgomb");
     this.apiService.getLogout().then(
       response => {

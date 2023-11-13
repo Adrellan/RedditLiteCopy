@@ -12,7 +12,7 @@
   </div>
   
   <div class="end">
-    <p-menu #menu [model]="items" [popup]="true"></p-menu>
+    <p-menu #menu [model]="items" [popup]="true" (onShow)="renderMenu()"></p-menu>
       <button pButton 
       type="button" 
       (click)="menu.toggle($event)" 
