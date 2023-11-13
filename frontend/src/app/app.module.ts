@@ -18,7 +18,11 @@ import { PostListComponent } from './part/post-list/post-list.component';
 import { CreatePostComponent } from './part/create-post/create-post.component';
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import { DividerModule } from 'primeng/divider';
+<<<<<<< HEAD
 import { FooterComponent } from './part/footer/footer.component';
+=======
+import {SkeletonModule} from "primeng/skeleton"
+>>>>>>> origin/staging
 
 @NgModule({
   declarations: [

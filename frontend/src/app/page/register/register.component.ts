@@ -24,8 +24,8 @@ export class RegisterComponent {
   openLoginDialog() {
     const ref = this.dialogService.open(LoginComponent, {
       header: 'Bejelentkezés',
-      width: '40%',
-      contentStyle: { 'max-height': '50vh', overflow: 'auto' },
+      width: '400px',
+      contentStyle: { 'max-height': '480px', overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
     });

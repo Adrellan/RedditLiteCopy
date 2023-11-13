@@ -13,9 +13,14 @@ export class UserBannerComponent implements  OnInit{
 
   ngOnInit() {
     if(this.fullName){
-      console.log(this.fullName)
       const parts = this.fullName.split(" ");
-      this.bannerLabel = parts[0][0].toUpperCase() + parts[1][0].toUpperCase();
+      if(parts.length > 1){
+        this.bannerLabel = parts[0][0].toUpperCase() + parts[1][0].toUpperCase();
+      }
+      this.bannerLabel = this.fullName[0].toUpperCase() + this.fullName.slice(-1)[0].toUpperCase();
+    }
+    else{
+      this.bannerLabel ="AB"
     }
   }
 
