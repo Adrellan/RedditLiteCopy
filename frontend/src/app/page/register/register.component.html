@@ -3,14 +3,14 @@
   <form (ngSubmit)="register()">
     <div class="p-field">
       <span class="p-float-label">
-        <input id="name" name="name" type="text" [(ngModel)]="user.name" pInputText required>
+        <input id="name" name="name" type="text" [(ngModel)]="user.fullName" pInputText required>
         <label for="username">Teljes név</label>
       </span>
     </div>
 
     <div class="p-field">
       <span class="p-float-label">
-        <input id="username" name="username" type="text" [(ngModel)]="user.username" pInputText required>
+        <input id="username" name="username" type="text" [(ngModel)]="user.userName" pInputText required>
         <label for="username">Felhasználónév</label>
       </span>
     </div>
