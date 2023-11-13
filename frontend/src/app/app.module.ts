@@ -18,6 +18,7 @@ import { PostListComponent } from './part/post-list/post-list.component';
 import { CreatePostComponent } from './part/create-post/create-post.component';
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import { DividerModule } from 'primeng/divider';
+import { FooterComponent } from './part/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DividerModule } from 'primeng/divider';
     PostListComponent,
     CreatePostComponent,
     UserBannerComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

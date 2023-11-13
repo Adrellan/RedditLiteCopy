@@ -21,6 +21,4 @@ export class ApiService {
   postLogin(user: any): Promise<any> {
     return this.baseApiService.getApi().post('/login', user);
   }
-  
-  
 }
