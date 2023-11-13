@@ -18,6 +18,7 @@ import { PostListComponent } from './part/post-list/post-list.component';
 import { CreatePostComponent } from './part/create-post/create-post.component';
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import { DividerModule } from 'primeng/divider';
+import {SkeletonModule} from "primeng/skeleton"
 
 @NgModule({
   declarations: [
