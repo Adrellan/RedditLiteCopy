@@ -8,6 +8,7 @@
 * */
 import {Request, Response, NextFunction } from 'express';
 
+
 const jwt = require('jsonwebtoken');
 
 
@@ -20,6 +21,7 @@ export const authenticationMiddleware = ((req: Request & { user?: { username: st
   console.log('authSignature:', authSignature);
 
   if (!authToken || !authSignature) {
+    console.log("nem vagy bejelentkezve")
     return res.sendStatus(401);
   }
 

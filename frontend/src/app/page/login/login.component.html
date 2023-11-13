@@ -1,4 +1,7 @@
-<div>
+<div style="width:100%; margin: auto auto;">
+    <div class="logo">
+        <p-image src="./../../../assets/logo.png" alt="Image" width="150px" height="150px"></p-image>
+    </div>
     <form (ngSubmit)="login()">
         <div class="p-field">
             <span class="p-float-label">
@@ -22,6 +25,6 @@
             </div>
         </div>
 
-        <p>Új felhasználó vagy? <a (click)="openRegistrationDialog()">Regisztálj</a></p>
+        <p>Új felhasználó vagy? <span (click)="openRegistrationDialog()" style="color:#579257; cursor: pointer;">Regisztálj</span></p>
     </form>
 </div>

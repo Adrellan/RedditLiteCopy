@@ -1,0 +1,32 @@
+.footer {
+    height: 40vh;
+    background-color: #579257;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh; /* Adjust the height as needed */
+}
+
+.icon > img {
+    width: 250px;
+    height: 250px;
+    mix-blend-mode: multiply;
+    object-fit: contain;
+}
+
+.developers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.developers > p-chip {
+    margin: 3vh 3vw;
+}
