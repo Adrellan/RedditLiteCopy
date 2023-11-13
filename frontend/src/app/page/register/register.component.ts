@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private dialogService: DialogService,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private apiService: ApiService
   ) {}
 
   openLoginDialog() {
@@ -36,10 +38,23 @@ export class RegisterComponent {
     // });
   }
 
-  register() {
-    console.log('User Registered:', this.user);
-    this.ref.close();
+  // register() {
+  //   // this.apiService.postRegister(this.user);
+  //   console.log('User Registered:', this.user);
+  //   this.ref.close();
+  // }
+
+  async register() {
+    this.apiService.postRegister(this.user).then(
+      response => {
+        console.log('Registration Successful:', response);
+        this.ref.close();
+      },
+    ).catch(error => {
+      console.log(error);
+    })
   }
+  
 
   cancel() {
     this.ref.close();
