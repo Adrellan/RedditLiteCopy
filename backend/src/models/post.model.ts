@@ -7,7 +7,7 @@ export interface IPost extends IBaseEntity {
 	author: {
 		type: Schema.Types.ObjectId, ref: "User"
 	},
-	comments: [{
+	comments?: [{
 		type: Schema.Types.ObjectId, ref: "Comment"
 	}]
 	content: string
@@ -38,5 +38,6 @@ postScheme.statics.findActives = function () {
 
 // Post model
 export const Post = model<IPost, PostModel>("Post", postScheme, "posts");
+
 
 

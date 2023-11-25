@@ -1,6 +1,6 @@
 import { connect, disconnect } from 'mongoose';
 import { Post } from '../src/models/post.model';
-import { User } from '../src/models/user.model';
+import { IUser, User } from '../src/models/user.model';
 import { Comment } from '../src/models/comment.model';
 
 beforeAll(async () => {
@@ -20,10 +20,11 @@ afterAll(async () => {
   await disconnect();
 });
 
-describe('Post Model Tests', () => {
+describe('User Model Tests', () => {
   let userId: string;
 
   beforeAll(async () => {
+   
     // Felhasználó létrehozása és ID-jének eltárolása
     const user = await User.create({
       fullName: 'Active Post',
@@ -36,27 +37,40 @@ describe('Post Model Tests', () => {
       creator: 'TestUser',
       updated: new Date(),
     });
-
-    userId = user._id.toString();
+    // Add more assertions as needed
   });
 
-  it('should find active posts using findActives method', async () => {
-    
-    await Post.create({
-      title: 'Sample Post',
-      content: 'This is an inactive test post',
-      author: userId,
+  it('should find active users', async () => {
+    const activeUserData: IUser = {
+      fullName: 'Active User',
+      userName: 'active_user',
+      password: 'securePassword',
+      email: 'active.user@example.com',
+      salt: 'randomSalt',
+      active: true,
+      created: new Date(),
+      creator: 'TestUser',
+      updated: new Date(),
+    };
+
+    const inactiveUserData: IUser = {
+      fullName: 'Inactive User',
+      userName: 'inactive_user',
+      password: 'securePassword',
+      email: 'inactive.user@example.com',
+      salt: 'randomSalt',
       active: false,
       created: new Date(),
       creator: 'TestUser',
       updated: new Date(),
-    });
+    };
 
-    const activePosts = await Post.findActives();
+    await User.create(activeUserData);
+    await User.create(inactiveUserData);
 
-    // Assert
-    expect(activePosts).toHaveLength(1);
-    expect(activePosts[0].title).toBe('Active Post');
-    expect(activePosts[0].active).toBe(true);
+    const activeUsers = await User.findActives();
+
+    expect(activeUsers).toHaveLength(1);
+    // Add more assertions as needed
   });
 });
