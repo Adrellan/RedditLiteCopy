@@ -9,6 +9,7 @@ import apiRouter from "./api.router";
 import compression from "compression"
 import {logger} from "./config/logger.config";
 
+
 const settings = require('../package.json');
 const cookieParser = require('cookie-parser');
 
@@ -63,3 +64,4 @@ app.listen(port, () => {
 	console.log(`⚡️ [server]: Server is running at http://localhost:${port}`);
 });
 
+export default app;
