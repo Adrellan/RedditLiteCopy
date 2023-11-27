@@ -1,19 +1,18 @@
 import request from 'supertest';
 import express, { Express } from 'express';
-import mongoose from 'mongoose'; 
+import mongoose from 'mongoose'; // Biztosítsd, hogy az importok helyesek legyenek
 import { Comment } from '../../src/models/comment.model';
 import { User } from '../../src/models/user.model';
 import { Post } from '../../src/models/post.model';
 import { authenticationMiddleware } from '../../src/middlewares/authentication.mw';
-import router from '../../src/controllers/commentController';
+import router from '../../src/controllers/commentController'; // Biztosítsd, hogy a router útvonala helyes legyen
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-import { jwtSecret } from '../../src/config/jwtSecretKey.generator';
-
-const jwt = require('jsonwebtoken');
 
 let mongoServer: any;
 
+let authToken: string;
+let authSignature: string;
 
 const app: Express = express();
 app.use(express.json());
@@ -54,6 +53,11 @@ describe('Comment Controller', () => {
     
     const newPost = await Post.create(postData);
     postId1 = newPost._id.toString();
+
+    const loginResponse = await request(app)
+    .post('/login')
+    .send({ userName: 'test_user', password: 'testPassword' });
+
   });
 
   afterAll(async () => {
@@ -92,5 +96,16 @@ describe('Comment Controller', () => {
     const response = await request(app).get(`/api/comments/${commentId}`);
     expect(response.status).toBe(200);
   });
-    
+
+  it('should handle errors when adding a new comment', async () => {
+    const invalidComment = {
+        text: "Aha"
+    };
+    const response = await request(app)
+      .post('/api/comments')
+      .send(invalidComment)
+      .expect(401);
+
+  });
+
 });

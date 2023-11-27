@@ -91,4 +91,11 @@ describe('User Controller', () => {
     expect(response.status).toBe(200);
     expect(response.body.fullName).toBe('John Doe');
   });
-});
+  it('should fail to logout', async () => {
+    const response = await request(app)
+      .get('/logout')
+      .expect(401);
+
+  });
+  
+}); 
