@@ -12,7 +12,6 @@ export class PostItemComponent implements OnInit{
   @Input() postItem: any;
   liked:boolean = false;
   disliked:boolean = false;
-  
   saved:boolean = false;
 
   ngOnInit(): void {
@@ -30,9 +29,5 @@ export class PostItemComponent implements OnInit{
   dislikePost(){
     this.liked = false;
     this.disliked = !this.disliked;
-
   }
-
-
-
 }

@@ -34,7 +34,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRippleModule } from '@angular/material/core';
 // Material Popups & Modals
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 // Material Data tables
@@ -80,7 +84,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
   ],
   exports: [
     MatAutocompleteModule,
@@ -117,7 +121,17 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
-  ]
+    MatTableModule,
+  ],
+  providers: [
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {},
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

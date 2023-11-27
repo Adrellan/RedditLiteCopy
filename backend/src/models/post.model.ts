@@ -2,15 +2,14 @@ import {model, Model, Schema} from "mongoose"
 import {baseEntityModel, IBaseEntity} from "./baseEntity.model";
 import {autopopulatePlugin} from "../config/db.config";
 export interface IPost extends IBaseEntity {
-	name: string;
 	title: string,
+	content: string,
 	author: {
 		type: Schema.Types.ObjectId, ref: "User"
 	},
 	comments?: [{
 		type: Schema.Types.ObjectId, ref: "Comment"
 	}]
-	content: string
 }
 interface PostModel extends Model<IPost> {
 	findActives(): any

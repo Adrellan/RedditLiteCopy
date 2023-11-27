@@ -5,20 +5,23 @@ import { BaseApiService } from './base-api.service';
   providedIn: 'root',
 })
 export class PostService {
-  constructor(private apiService: BaseApiService) {}
+  constructor(private baseApiService: BaseApiService) {}
 
   //TODO!
   public async getPosts() {
     try {
-      const response = await this.apiService.getApi().get('/post');
+      const response = await this.baseApiService.getApi().get('/post');
       return response.data;
     } catch (e) {
       console.error(e);
       return [];
     }
   }
-  //TODO!
-  public createPost() {}
+
+  async createPost(post: any): Promise<any>{
+    await this.baseApiService.getApi().post('/post', post);
+  }
+  
   //TODO!
   public deletePost() {}
   //TODO!

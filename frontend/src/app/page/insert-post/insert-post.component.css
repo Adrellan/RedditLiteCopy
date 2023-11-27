@@ -1,0 +1,21 @@
+.card{
+    margin: auto;
+    width: 100%;
+}
+
+.title{
+    border: 1px solid black;
+}
+
+.p-field{
+    margin-top: 2em;
+}
+
+
+input{
+    width: 100%;
+    padding-left: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    border: 1px solid black;
+}
