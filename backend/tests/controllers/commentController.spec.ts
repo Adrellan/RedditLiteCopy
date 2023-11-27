@@ -1,11 +1,11 @@
 import request from 'supertest';
 import express, { Express } from 'express';
-import mongoose from 'mongoose'; // Biztosítsd, hogy az importok helyesek legyenek
+import mongoose from 'mongoose'; 
 import { Comment } from '../../src/models/comment.model';
 import { User } from '../../src/models/user.model';
 import { Post } from '../../src/models/post.model';
 import { authenticationMiddleware } from '../../src/middlewares/authentication.mw';
-import router from '../../src/controllers/commentController'; // Biztosítsd, hogy a router útvonala helyes legyen
+import router from '../../src/controllers/commentController';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 import { jwtSecret } from '../../src/config/jwtSecretKey.generator';
