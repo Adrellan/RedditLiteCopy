@@ -30,7 +30,7 @@ router.post("/login", async (req, res)=>{
 		}
 		const fullName = user.fullName;
 
-		const token = jwt.sign({ fullName, userName }, secretKey);
+		const token = jwt.sign({ fullName, userName, id:user._id }, secretKey);
 		
 		const [header, payload, signature] = token.split('.');
 		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: false, secure: true, path:"/" });

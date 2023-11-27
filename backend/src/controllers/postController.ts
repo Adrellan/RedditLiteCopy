@@ -37,6 +37,8 @@ router.post("", authenticationMiddleware, async (req, res) => {
 	try {
 		const post = req.body as IPost;
 
+		post.author = (req as any).user._id;
+
 		// set the record metadata info
 		setNewRecordInfo(post);
 
