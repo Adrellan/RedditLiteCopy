@@ -9,7 +9,7 @@ import { AuthenticationService } from './authentication.service'
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private baseApiService: BaseApiService, 
+  constructor(private baseApiService: BaseApiService,
               private authService: AuthenticationService) {}
 
   // Példa GET kérés
@@ -28,7 +28,7 @@ export class ApiService {
   getLogout(): Promise <any>{
       const token1 = this.authService.getCookie('AUTH_TOKEN');
       const token2 = this.authService.getCookie('AUTH_SIGNATURE');
-      
+
       const headers = {
         'Authorization': `Bearer ${token1} ${token2}`
       };
