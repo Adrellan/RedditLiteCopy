@@ -1,4 +1,4 @@
-import { baseEntityModel, IBaseEntity } from '../src/models/baseEntity.model'; // Az elérési útvonalat az alkalmazásodhoz igazítsd
+import { baseEntityModel, IBaseEntity } from '../../src/models/baseEntity.model'
 
 
 describe('Base Entity Tests', () => {

@@ -1,7 +1,6 @@
 import {Model, model, Schema} from "mongoose";
 import {baseEntityModel, IBaseEntity} from "./baseEntity.model";
 import {autopopulatePlugin} from "../config/db.config";
-import {populate} from "dotenv";
 
 export interface IComment extends IBaseEntity {
 	text: string,

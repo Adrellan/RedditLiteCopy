@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { authenticationMiddleware } from '../../src/middlewares/authentication.mw'; // Adjust the path accordingly
+import { authenticationMiddleware } from '../../src/middlewares/authentication.mw';
 import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../../src/config/jwtSecretKey.generator';
 
 jest.mock('jsonwebtoken', () => ({
   verify: jest.fn(),
@@ -55,7 +56,7 @@ describe('Authentication Middleware', () => {
 
     expect(jwt.verify).toHaveBeenCalledWith(
       'mockAuthToken.mockAuthSignature',
-      process.env.JWT_SECRET_KEY
+      jwtSecret
     );
     expect(mockRequest.user).toEqual(decodedMock);
     expect(mockNext).toHaveBeenCalled();

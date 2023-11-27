@@ -1,4 +1,4 @@
-import { performanceMiddleware } from '../../src/middlewares/performace.mw'; // Adjust the path accordingly
+import { performanceMiddleware } from '../../src/middlewares/performace.mw'; 
 import { Request, Response } from 'express';
 
 describe('Performance Middleware', () => {
