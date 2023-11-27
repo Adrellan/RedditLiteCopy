@@ -5,6 +5,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { RegisterComponent } from '../register/register.component';
 import { ApiService } from 'src/app/services/api.service';
+import { MessageService } from 'primeng/api'; // Importáljuk a PrimeNG MessageService-t
+
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,14 @@ import { ApiService } from 'src/app/services/api.service';
 export class LoginComponent implements OnInit{
 
   loginData: any = {};
+  msgs: any[] = [];
 
   constructor(
     private router: Router, 
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
     private apiService: ApiService,
+    private messageService: MessageService
     ) {}
 
   openRegistrationDialog() {
@@ -50,7 +54,20 @@ export class LoginComponent implements OnInit{
         this.ref.close();
       },
     ).catch(error => {
-      console.log(error);
+      console.log('Login Error:', error);
+      if (error.status === 401) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Invalid username or password'
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Kérem ellenőrizze a megadott adatokat.'
+        });
+      }
     })
   }
 

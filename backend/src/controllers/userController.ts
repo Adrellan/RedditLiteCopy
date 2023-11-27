@@ -4,16 +4,14 @@ import crypto from "crypto";
 import {setNewRecordInfo} from "../helpers/record.helper";
 import {badRequest, Ok} from "../helpers/response.helper";
 import { authenticationMiddleware } from '../middlewares/authentication.mw';
+import { jwtSecret } from "../config/jwtSecretKey.generator";
 
 
 const router = Router();
 const jwt = require('jsonwebtoken');
 const {body, validationResult} = require('express-validator')
-const nodemailer = require("nodemailer");
 
 require('dotenv').config();
-
-const secretKey = process.env.JWT_SECRET_KEY
 
 router.post("/login", async (req, res)=>{
 	const { userName, password } = req.body;
@@ -30,7 +28,7 @@ router.post("/login", async (req, res)=>{
 		}
 		const fullName = user.fullName;
 
-		const token = jwt.sign({ fullName, userName }, secretKey);
+		const token = jwt.sign({ userName }, jwtSecret);
 		
 		const [header, payload, signature] = token.split('.');
 		res.cookie('AUTH_TOKEN', `${header}.${payload}`, { httpOnly: false, secure: true, path:"/" });
