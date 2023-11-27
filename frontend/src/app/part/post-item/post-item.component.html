@@ -22,8 +22,8 @@
 
 
     </ng-template>
-    <div class="post-content">
-        {{postItem.content || "Még üres vagyok :\\" }}
+    <div [innerHTML]="postItem.content || 'Még üres vagyok :\\'" class="post-content">
+
     </div>
   
     <div class="panel-bottom-toolbar">

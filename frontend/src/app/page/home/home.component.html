@@ -1,11 +1,7 @@
-<app-navbar></app-navbar>
-
 <div class="home-container">
-  <app-create-post>
+  <app-create-post (insertStatus)="statusListener($event)">
   </app-create-post>
 
-  <app-post-list>
+  <app-post-list #postList>
   </app-post-list>
 </div>
-
-<app-footer></app-footer>
