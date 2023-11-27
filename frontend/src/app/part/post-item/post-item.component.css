@@ -7,6 +7,13 @@
   border-top-right-radius: 0;
   border-top: none;
 }
+.comments-toolbar{
+  border-top: none;
+  border-radius: 0;
+  background-color: white;
+  cursor: context-menu !important;
+}
+
 .p-toolbar > div > *{
   cursor: pointer;
   margin: 0 1em;
