@@ -1,0 +1,18 @@
+<div class="comment-item">
+    <div class="upper-toolbar">
+        <div class="user-info">
+            <app-user-banner fullName="{{comment.author.fullName}}" [style]="{'margin-right':'1em'}"/>
+            <div class="user-fullname">{{comment.author.fullName}}</div>
+            <div class="created">: {{comment.created}}</div>
+        </div>
+        <i class="pi pi-heart" style="cursor: pointer;"></i>
+      
+    </div>
+    <div style="margin-top: 1em; margin-left: 1em;">
+        {{comment.text}}
+    </div>
+    <div>
+      
+    </div>
+</div>
+<p-divider/>

@@ -1,0 +1,18 @@
+.comment-item  .user-info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.comment-item > .upper-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info > .created{
+    color: rgb(135, 135, 135);
+    font-weight: 200;
+}
+.comment-item{
+    cursor: context-menu;
+}
