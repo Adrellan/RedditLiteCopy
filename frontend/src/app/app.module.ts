@@ -18,6 +18,8 @@ import { PostListComponent } from './part/post-list/post-list.component';
 import { CreatePostComponent } from './part/create-post/create-post.component';
 import { UserBannerComponent } from './part/user-banner/user-banner.component';
 import { FooterComponent } from './part/footer/footer.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { InsertPostComponent } from './page/insert-post/insert-post.component';
 import { CommentItemComponent } from './part/comment-item/comment-item.component';
 
 @NgModule({
@@ -33,6 +35,8 @@ import { CommentItemComponent } from './part/comment-item/comment-item.component
     UserBannerComponent,
     FooterComponent,
     CommentItemComponent,
+    ProfileComponent,
+    InsertPostComponent,
   ],
   imports: [
     BrowserModule,

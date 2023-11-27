@@ -13,11 +13,11 @@ export class PostItemComponent implements OnInit{
   @Input() postItem: any;
 
   commentInput: any
-  
+
   liked:boolean = false;
   disliked:boolean = false;
   commentsOpened:boolean = false;
-  
+
   saved:boolean = false;
 
   constructor(private commentService: CommentService){}

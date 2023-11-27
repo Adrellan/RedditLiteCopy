@@ -1,11 +1,13 @@
 <div class="create-post">
 
   <div style="display: flex">
-      <app-user-banner fullName="Nagy Miklós"/>
-      <input type="text" pInputTextarea style="border-radius: 2em; margin-left: 0.5em; width: 100%" placeholder="Mi jár a fejedben...">
+    <app-user-banner fullName="Nagy Miklós" />
+    <input type="text" pInputTextarea style="border-radius: 2em; margin-left: 0.5em; width: 100%"
+      placeholder="Mi jár a fejedben..." (click)="showInsertPostDialog()">
   </div>
-  <p-divider/>
-  <div class="more-things">
+  <p-divider />
+
+  <!-- <div class="more-things">
     <div>
       <i class="pi pi-video" style="color: red;"></i>
       Videó
@@ -18,6 +20,6 @@
       <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/yMDS19UDsWe.png" width="25px" alt="">
       Hangulat
     </div>
-  </div>
-
+  </div> -->
+  <p-toast></p-toast>
 </div>

@@ -1,30 +1,24 @@
 <div class="post-list">
-
-
   <div class="post-list-container" *ngIf="postList.length > 0">
     <app-post-item *ngFor="let post of postList;" [postItem]="post">
 
     </app-post-item>
-    </div>
-    <div class="post-list-container" *ngIf="postList.length == 0">
-      <div class="border-round border-1 surface-border p-4 surface-card mb-3">
-        <div class="flex mb-3">
-            <p-skeleton shape="circle" size="4rem" styleClass="mr-2 mb-3"></p-skeleton>
-            <div>
-                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
-                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
-                <p-skeleton height=".5rem"></p-skeleton>
-            </div>
+  </div>
+  <div class="post-list-container" *ngIf="postList.length == 0">
+    <div class="border-round border-1 surface-border p-4 surface-card mb-3">
+      <div class="flex mb-3">
+        <p-skeleton shape="circle" size="4rem" styleClass="mr-2 mb-3"></p-skeleton>
+        <div>
+          <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton height=".5rem"></p-skeleton>
         </div>
-        <p-skeleton width="100%" height="150px" styleClass="mt-3"></p-skeleton>
-        <div style="display: flex; flex-direction:column; justify-content:space-between; height:70px;">
-            <p-skeleton width="12rem" height="2rem"></p-skeleton>
-            <p-skeleton width="30rem" height="2rem"></p-skeleton>
-        </div>
+      </div>
+      <p-skeleton width="100%" height="150px" styleClass="mt-3"></p-skeleton>
+      <div style="display: flex; flex-direction:column; justify-content:space-between; height:70px;">
+        <p-skeleton width="12rem" height="2rem"></p-skeleton>
+        <p-skeleton width="30rem" height="2rem"></p-skeleton>
+      </div>
     </div>
-    </div>
-
-
-  <!-- *ngFor-al végigmegyünk a picsába és beletesszük az összes app-post-item-et -->
-
+  </div>
 </div>

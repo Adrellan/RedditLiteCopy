@@ -37,6 +37,7 @@
         <button pButton pRipple type="submit" label="Regisztráció" class="p-button-rounded p-button-success"></button>
       </div>
     </div>
+    <p-messages [(value)]="msgs"></p-messages>
 
     <p>Már felhasználó vagy? <span (click)="openLoginDialog()" style="color:#579257; cursor: pointer;">Jelentkezz be</span></p>
   </form>

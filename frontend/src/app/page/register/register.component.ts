@@ -5,6 +5,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LoginComponent } from '../login/login.component';
 import { ApiService } from 'src/app/services/api.service';
+import { MessageService } from 'primeng/api'; // Importáljuk a PrimeNG MessageService-t
 
 @Component({
   selector: 'app-register',
@@ -13,12 +14,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class RegisterComponent {
   user: any = {};
+  msgs: any[] = [];
 
   constructor(
     private router: Router,
     private dialogService: DialogService,
     public ref: DynamicDialogRef,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private messageService: MessageService
   ) {}
 
   openLoginDialog() {
@@ -53,8 +56,15 @@ export class RegisterComponent {
         this.ref.close();
       },
     ).catch(error => {
-      console.log(error);
-    })
+      if (error.status === 401 && error.error.errors) {
+        const registerErrors = error.error.errors.map((e: any) => e.message);
+        registerErrors.forEach((errorMsg: { message: string }) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg.message });
+        });
+      } else {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Kérem ellenőrizze a megadott adatokat.' });
+      }
+    });
   }
   
 

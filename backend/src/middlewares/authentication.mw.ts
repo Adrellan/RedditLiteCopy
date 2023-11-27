@@ -6,7 +6,7 @@
 *  Responsible user: Daniella
 *
 * */
-import {NextFunction, Request, Response} from 'express';
+import {Request, Response, NextFunction } from 'express';
 
 
 const jwt = require('jsonwebtoken');
