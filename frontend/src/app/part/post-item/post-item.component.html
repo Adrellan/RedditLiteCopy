@@ -22,17 +22,31 @@
 
 
     </ng-template>
-    <div class="post-content">
-        {{postItem.content || "Még üres vagyok :\\" }}
+    <div [innerHTML]="postItem.content || 'Még üres vagyok :\\'" class="post-content">
+
     </div>
   
     <div class="panel-bottom-toolbar">
 
     </div>
   </p-panel>
+  <p-toolbar *ngIf="commentsOpened" styleClass="comments-toolbar">
+    <div style="width: 100%; display:flex; align-items:center">
+      <input pInputText name="comment-input" 
+      style="width: 100%; border-radius:10em; padding:1em"
+       placeholder="Add comment..." [(ngModel)]="commentInput"
+       />
+      <i class="pi pi-send send-comment-icon" style="background-color: rgb(227, 227, 227); padding:1em; border-radius: 100%" (click)="insertComment()"></i>
+    </div>
+    <div class="post-comments" style="width: 100%;">
+      <app-comment-item *ngFor="let comment of postItem.comments" [comment]="comment"/>
+
+    </div>
+
+  </p-toolbar>
   <p-toolbar styleClass="post-toolbar">
     <div class="p-toolbar-group-start">
-      <div>
+      <div (click)="toggleCommentsOpened()">
         <i class="pi pi-comments" ></i>
         <span>
           Hozzászólások
@@ -51,6 +65,7 @@
       </div>
 
     </div>
+   
     <div class="p-toolbar-group-end">
       <i class="pi pi-thumbs-up" *ngIf="!liked" style="margin-right: 0.5em" (click)="likePost()"></i>
       <i class="pi pi-thumbs-up-fill" *ngIf="liked" style="margin-right: 0.5em" (click)="likePost()"></i>

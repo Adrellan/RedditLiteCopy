@@ -1,5 +1,6 @@
 import { createInjectableType } from '@angular/compiler';
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-post-item',
@@ -10,10 +11,16 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 export class PostItemComponent implements OnInit{
 
   @Input() postItem: any;
+
+  commentInput: any
+
   liked:boolean = false;
   disliked:boolean = false;
-  
+  commentsOpened:boolean = false;
+
   saved:boolean = false;
+
+  constructor(private commentService: CommentService){}
 
   ngOnInit(): void {
     console.log(this.postItem)
@@ -31,6 +38,24 @@ export class PostItemComponent implements OnInit{
     this.liked = false;
     this.disliked = !this.disliked;
 
+  }
+  toggleCommentsOpened(){
+    this.commentsOpened = !this.commentsOpened;
+  }
+  async insertComment(){
+    const requestData = {
+      text: this.commentInput,
+      post: this.postItem._id
+    }
+    await this.commentService.createComment(requestData)
+    this.commentInput = ""
+    await this.reloadComments()
+
+
+  }
+  private async reloadComments(): Promise<void>{
+    const comments = await this.commentService.getComments(this.postItem._id);
+    this.postItem.comments = comments
   }
 
 

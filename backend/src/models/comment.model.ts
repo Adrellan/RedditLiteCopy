@@ -39,6 +39,7 @@ export const commentScheme = new Schema<IComment, CommentModel>({
 	post: {
 		type: Schema.Types.ObjectId,
 		ref: "Post",
+
 	},
 	//TODO: Extend the model accordingly
 

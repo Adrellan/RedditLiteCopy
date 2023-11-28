@@ -1,0 +1,17 @@
+<div class="card">
+    <form (ngSubmit)="post_content()">
+        <div class="p-field">
+            <input id="title" name="title" type="text" [(ngModel)]="post.title" pInputText placeholder="Cím" class="title" [style]="{'width':'100%'}" />
+        </div>
+        
+        <div class="p-field">
+            <p-editor [style]="{ height: '320px' }" placeholder="Bejegyzés" name="content" type="text" [(ngModel)]="post.content" class="content"></p-editor>
+        </div>
+
+        <div class="p-field">
+            <div>
+                <button pButton pRipple type="submit" label="Küldés" class="p-button-rounded p-button-success" [style]="{'position':'relative'}"></button>
+            </div>
+        </div>
+    </form>
+</div>

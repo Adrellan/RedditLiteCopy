@@ -7,16 +7,13 @@
 *
 * */
 import {Request, Response, NextFunction } from 'express';
-import { jwtSecret } from '../config/jwtSecretKey.generator';
+
 
 const jwt = require('jsonwebtoken');
 
 
-export const authenticationMiddleware = (
-  req: Request & { user?: { username: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticationMiddleware = ((req: Request & { user?: { username: string } }, res: Response, next: NextFunction) => {
+
   const authToken = req.cookies?.AUTH_TOKEN as string;
   const authSignature = req.cookies?.AUTH_SIGNATURE as string;
 
@@ -24,16 +21,16 @@ export const authenticationMiddleware = (
   console.log('authSignature:', authSignature);
 
   if (!authToken || !authSignature) {
-      console.log("nem vagy bejelentkezve");
+    console.log("nem vagy bejelentkezve")
     return res.sendStatus(401);
   }
+
   try {
-      const decoded = jwt.verify(`${authToken}.${authSignature}`, jwtSecret) as { username: string };
-      req.user = decoded;
-      
-      next();
+    const decoded = jwt.verify(`${authToken}.${authSignature}`, process.env.JWT_SECRET_KEY) as { username: string };
+    req.user = decoded;
+    next();
   } catch (error) {
-      console.error('JWT Verification Error:', error);
-      return res.sendStatus(403);
+    console.error(error);
+    return res.sendStatus(403); 
   }
-};
+});

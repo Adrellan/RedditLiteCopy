@@ -1,11 +1,11 @@
 import request from 'supertest';
 import express, { Express } from 'express';
-import mongoose from 'mongoose'; // Biztosítsd, hogy az importok helyesek legyenek
+import mongoose from 'mongoose';
 import { Comment } from '../../src/models/comment.model';
 import { User } from '../../src/models/user.model';
 import { Post } from '../../src/models/post.model';
 import { authenticationMiddleware } from '../../src/middlewares/authentication.mw';
-import router from '../../src/controllers/commentController'; // Biztosítsd, hogy a router útvonala helyes legyen
+import router from '../../src/controllers/commentController'; 
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 
@@ -64,4 +64,15 @@ describe('Post Controller', () => {
     const response = await request(app).get(`/api/posts/${postId1}`);
     expect(response.status).toBe(200);
   });
+  it('should handle errors when adding a new post', async () => {
+    const invalidPost = {
+        title: "invalid"
+    };
+    const response = await request(app)
+      .post('/api/posts')
+      .send(invalidPost)
+      .expect(401);
+
+  });
+
 });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Import Router module
 import { BrowserModule } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -31,16 +32,19 @@ export class NavbarComponent implements OnInit {
     {
       separator: true,
     },
-    {
-      label: 'Profil',
-      icon: 'pi pi-fw pi-user',
-      logged: true,
-    },
-    {
-      label: 'Bejegyzséseim',
-      icon: 'pi pi-fw pi-reddit',
-      logged: true,
-    },
+    // {
+    //   label: 'Profil',
+    //   icon: 'pi pi-fw pi-user',
+    //   logged: true,
+    //   command: () => {
+    //     this.router.navigate(['/profile']);
+    //   }
+    // },
+    // {
+    //   label: 'Bejegyzséseim',
+    //   icon: 'pi pi-fw pi-reddit',
+    //   logged: true,
+    // },
   ];
 
   items: MenuItem[] | undefined;
@@ -48,7 +52,9 @@ export class NavbarComponent implements OnInit {
   constructor( 
     private dialogService: DialogService,
     private apiService: ApiService,
-    private browser: BrowserModule) 
+    private browser: BrowserModule,
+    private router: Router,
+    ) 
     {}
 
 

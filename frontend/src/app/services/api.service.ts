@@ -41,5 +41,4 @@ export class ApiService {
 
     return !(token1 == null || token2 == null);
   }
-
 }

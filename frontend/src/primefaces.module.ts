@@ -36,6 +36,8 @@ import { ChipModule } from 'primeng/chip';
 import { ImageModule } from 'primeng/image';
 import { SkeletonModule } from 'primeng/skeleton';
 import { DividerModule } from 'primeng/divider';
+import { EditorModule } from 'primeng/editor';
+import { ToastModule } from 'primeng/toast';
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
@@ -77,6 +79,8 @@ import { MessageService } from 'primeng/api';
     ImageModule,
     SkeletonModule,
     DividerModule,
+    EditorModule,
+    ToastModule,
   ],
   exports: [
     SkeletonModule,
@@ -114,6 +118,8 @@ import { MessageService } from 'primeng/api';
     ImageModule,
     SkeletonModule,
     DividerModule,
+    EditorModule,
+    ToastModule,
   ],
   providers: [DialogService, MessageService, DynamicDialogRef],
 })

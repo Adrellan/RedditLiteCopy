@@ -1,9 +1,9 @@
-import { Router } from "express";
-import express, { Express, Request, Response,NextFunction } from 'express';
-import { IComment, Comment } from "../models/comment.model";
-import { setNewRecordInfo } from "../helpers/record.helper";
-import { badRequest, Ok } from "../helpers/response.helper";
-import { authenticationMiddleware } from '../middlewares/authentication.mw';
+import {Router} from "express";
+import {Comment, IComment} from "../models/comment.model";
+import {setNewRecordInfo} from "../helpers/record.helper";
+import {badRequest, Ok} from "../helpers/response.helper";
+import {authenticationMiddleware} from '../middlewares/authentication.mw';
+import {Post} from "../models/post.model";
 
 
 const router = Router();
@@ -11,7 +11,7 @@ const router = Router();
 router.get("/:postId", async (req, res) => {
   const { postId } = req.params ;
   try {
-    const comments = await Comment.findActives();
+    const comments = await Comment.find({active:true, post: postId}).sort({created: "desc"});
     Ok(res, comments);
   } catch (e) {
     badRequest(res, e);
@@ -33,13 +33,21 @@ router.get("/:commentId", async (req, res) => {
 router.post("",authenticationMiddleware, async (req, res) => {
   try {
     const comment = req.body as IComment;
+	  comment.author = (req as any).user.id
+	  const post = await Post.findById(comment.post)
+	  if (post === null) {
+		  return
+	  }
+	  setNewRecordInfo(comment);
 
-    setNewRecordInfo(comment);
+	  const newComment = new Comment({...comment});
 
-    const newComment = new Comment({ ...comment });
-    await newComment.save();
+	  await newComment.save();
+	  post.comments = [...post.comments, newComment._id] as any
+	  await post.save()
 
-    Ok(res, newComment);
+
+	  Ok(res, newComment);
   } catch (e) {
     badRequest(res, e);
   }

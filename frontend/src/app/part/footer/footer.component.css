@@ -1,5 +1,6 @@
 .footer {
-    height: 40vh;
+    min-height: 40vh;
+    width: 100%;
     background-color: #579257;
     display: flex;
     flex-direction: column;
@@ -10,10 +11,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30vh; /* Adjust the height as needed */
+    height: 30vh;
+    /* Adjust the height as needed */
 }
 
-.icon > img {
+.icon>img {
     width: 250px;
     height: 250px;
     mix-blend-mode: multiply;
@@ -27,6 +29,6 @@
     margin-top: auto;
 }
 
-.developers > p-chip {
+.developers>p-chip {
     margin: 3vh 3vw;
 }
